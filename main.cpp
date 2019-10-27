@@ -26,7 +26,9 @@ MSG mainMessage;
 
 LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam );
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
+static int callback(void *data, int argc, char **argv, char **azColName);
 
+// wyprowadzenie kontroli okien globalnie do płynnej zmiany
 HWND entryWindow;
 HWND openDbWindow;
 HWND createDbWindow;
@@ -37,7 +39,34 @@ HWND clientsWindow;
 HWND companyWindow;
 HWND productsWindow;
 
+// wspólna część dla zapytań sql
+sqlite3 *db;
+char *zErrMsg = 0;
+int rc;
+char *sql;
+const char* data = "Callback function called";
+
+// funkcja tymczasowa dla podglądu sql
+static int callback(void *data, int argc, char **argv, char **azColName){
+    int i;
+    fprintf(stderr, "%s: ", (const char*)data);
+
+    for(i = 0; i<argc; i++){
+        printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+    }
+
+    printf("\n");
+    return 0;
+}
+
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow ){
+    // dev sql  https://www.tutorialspoint.com/sqlite/sqlite_c_cpp.htm
+    //          https://www.sqlite.org/cintro.html
+    rc = sqlite3_open("db/test.db", &db); //baza musi być w katalogu db tam gdzie build jest odpalany
+    sql = "SELECT * FROM firma;";
+    rc = sqlite3_exec(db, sql, callback, (void*)data, &zErrMsg);
+    sqlite3_close(db);
+    // tworzenie klasy dla appki
     WNDCLASSEX wc;
     wc.cbSize = sizeof( WNDCLASSEX );
     wc.style = 0;
@@ -55,6 +84,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
         throw std::runtime_error("Problem z rejestracją klasy");
     }
 
+    // tworzenie okien
     entryWindow = CreateWindowEx( WS_EX_CLIENTEDGE, className,
             TEXT("Program Sprzedażowy - wybierz tryb pracy"),
             WS_OVERLAPPEDWINDOW, 10, 50, 900, 600, NULL, NULL, hInstance, NULL );
@@ -118,7 +148,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
         throw std::runtime_error("Problem z utworzeniem okna companyWindow");
     }
 
-
+    //tworzenie "statycznej" treści dla okien
     HWND entry_openDB = CreateWindowEx( 0, TEXT("BUTTON"), TEXT("Otwórz bazę danych"),
             WS_CHILD | WS_VISIBLE, 5, 5, 200, 30, entryWindow, ( HMENU ) BTN_ENTRY_OPENDB, hInstance, NULL );
     HWND entry_createDB = CreateWindowEx( 0, TEXT("BUTTON"), TEXT("Stwórz nową bazę danych"),
@@ -156,7 +186,6 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
             WS_CHILD | WS_VISIBLE, 5, 520, 200, 30, companyWindow, ( HMENU ) BTN_MAIN_RETURN, hInstance, NULL );
 
     ShowWindow( entryWindow, nCmdShow );
-    UpdateWindow( entryWindow );
 
     while( GetMessage( & mainMessage, NULL, 0, 0 ) ){
         TranslateMessage( & mainMessage );
@@ -176,7 +205,7 @@ LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ){
             break;
         case WM_COMMAND: //jakaś akcja na jakimś elemencie
             switch (wParam){ //wParam - element o zdefiniowanym numerze
-                case BTN_ENTRY_OPENDB: // przejscie do innego okna
+                case BTN_ENTRY_OPENDB: // obsługa konkretnego buttona (jego odwołania do zdef numeru)
                     ShowWindow( openDbWindow, SW_SHOW );
                     ShowWindow( hwnd, SW_HIDE );
                     break;
