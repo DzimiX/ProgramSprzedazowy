@@ -17,6 +17,9 @@
 #define BTN_MAIN_COMPANY 109
 #define BTN_MAIN_RETURN 110
 
+#define MAX_ROWS 10000
+#define MAX_COLLUMNS 20
+
 #include <windows.h>
 #include <iostream>
 #include <string>
@@ -47,22 +50,23 @@ sqlite3 *db;
 char *zErrMsg = 0;
 int rc;
 char *sql;
-char *content;
+std::string content[MAX_ROWS][MAX_COLLUMNS];
 char *insert;
-int rows=0;
-int row=0;
-int collumns=0;
+int row;
+int i;
+
+char buff[500];
+std::string temp;
+wchar_t wtext[200];
+LPWSTR ptr;
 
 // funkcja obsługująca sql
 static int callback(void *data, int argc, char **argv, char **azColName){
     int i;
-    std::string content[rows][collumns];
     for(i = 0; i<argc; i++){
-        strcat(argv[i]," | ");
+        //strcat(argv[i]," | ");
         content[row][i] = argv[i];
     }
-
-    std::cout << content[row][0] << content[row][1] << content[row][2] << content[row][3] << content[row][4] << std::endl;
 
     row++;
     return 0;
@@ -194,9 +198,16 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
     HWND company_return = CreateWindowEx( 0, TEXT("BUTTON"), TEXT("Powrót"),
             WS_CHILD | WS_VISIBLE, 5, 520, 200, 30, companyWindow, ( HMENU ) BTN_MAIN_RETURN, hInstance, nullptr );
 
+//    char *buff;
+//    std::string name = "stackoverflow";
+//    sprintf_s(buff, (size_t) "name is:%s", name.c_str());
+//    std::cout << buff;
+//    LPCWSTR ws = reinterpret_cast<LPCWSTR>(buff);
+
+    //MessageBox(entryWindow , ptr, L"Msg title", MB_OK | MB_ICONQUESTION);
+
     productsMessage = CreateWindowEx( WS_EX_CLIENTEDGE, TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER |
-    WS_VSCROLL | ES_MULTILINE | ES_AUTOVSCROLL, 5, 5, 150, 150, productsWindow, NULL, hInstance, NULL );
-    SetWindowText( productsMessage, TEXT("Wpisz tu coś") );
+    WS_VSCROLL | ES_MULTILINE | ES_AUTOVSCROLL, 210, 5, 450, 505, productsWindow, NULL, hInstance, NULL );
 
     ShowWindow( entryWindow, nCmdShow );
 
@@ -233,7 +244,7 @@ LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ){
                 case BTN_INFO:
                     MessageBoxEx(hwnd, TEXT("Program Sprzedażowy \n"
                                             "Autor: Maciej Dzimira\n"
-                                            "v 19.10.27"),
+                                            "v 19.10.28"),
                             TEXT("Informacje o programie"), MB_ICONINFORMATION, NULL);
                     break;
                 case BTN_ENTRY_RETURN:
@@ -253,15 +264,35 @@ LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ){
                     ShowWindow( hwnd, SW_HIDE );
                     break;
                 case BTN_MAIN_PRODUCTS:
-                    row = 0;
-                    rows = 1000;
-                    collumns = 5;
+                    SetWindowText( productsMessage, TEXT("abc") );
+                    row = 0; //aktualny wiersz, zerowanie dla nowego sqla
                     rc = sqlite3_open("db/test.db", &db);
                     sql = "SELECT * FROM produkty";
                     rc = sqlite3_exec(db, sql, callback, nullptr, nullptr);
-                    std::cout << rc << std::endl;
                     sqlite3_close(db);
+                    //std::cout << content[0][0] << content[0][1] << content[0][2] << content[0][3] << content[0][4] << std::endl; //testy
+                    //std::cout << "wiersze: " << row << std::endl;
 
+                    for(i = 1;i<=row;i++){
+                        std::cout << "rekord " << i << std::endl;
+                    }
+
+                    strcpy(buff, ""); // zerowanie bufora
+                    std::cout << "string contentu:: " << content[0][1] << std::endl;
+                    std::cout << "char* contentu:: " << content[0][1].c_str() << std::endl; // ok?
+                    std::cout << "char* buff:: " << buff << std::endl; // ok?
+
+                    //buff += '';
+
+
+                    strcat(buff,content[0][1].c_str());
+                    std::cout << "połączone :: " << buff << std::endl; // ok?
+
+                    //buff = "sklejone śmieci z zapytań";
+                    mbstowcs(wtext, buff, strlen(buff)+1);//Plus null
+                    ptr = wtext;
+                    row = 0;
+                    MessageBoxEx(hwnd, ptr, NULL, MB_ICONINFORMATION, NULL);
                     ShowWindow( productsWindow, SW_SHOW );
                     ShowWindow( hwnd, SW_HIDE );
                     break;
