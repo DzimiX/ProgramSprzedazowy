@@ -1,9 +1,9 @@
-#ifndef UNICODE
-#define UNICODE
-#endif
-#ifndef _UNICODE
-#define _UNICODE
-#endif
+//#ifndef UNICODE
+//#define UNICODE
+//#endif
+//#ifndef _UNICODE
+//#define _UNICODE
+//#endif
 
 #define BTN_ENTRY_OPENDB 100
 #define BTN_ENTRY_CREATEDB 101
@@ -25,7 +25,8 @@
 #include <string>
 #include "lib/sqlite3.h"
 
-LPWSTR className = TEXT("ProgramSprzedazowy");
+//LPWSTR className = TEXT("ProgramSprzedazowy");
+LPSTR className = "ProgramSprzedazowy";
 MSG mainMessage;
 
 LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam );
@@ -43,7 +44,7 @@ HWND clientsWindow;
 HWND companyWindow;
 HWND productsWindow;
 
-HWND productsMessage;
+HWND productsBox;
 
 // wspólna część dla zapytań sql
 sqlite3 *db;
@@ -55,9 +56,8 @@ char *insert;
 int row;
 int i;
 
-char buff[500];
-std::string temp;
-wchar_t wtext[200];
+char buff[5000];
+wchar_t wtext[5000];
 LPWSTR ptr;
 
 // funkcja obsługująca sql
@@ -206,8 +206,8 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
     //MessageBox(entryWindow , ptr, L"Msg title", MB_OK | MB_ICONQUESTION);
 
-    productsMessage = CreateWindowEx( WS_EX_CLIENTEDGE, TEXT("EDIT"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER |
-    WS_VSCROLL | ES_MULTILINE | ES_AUTOVSCROLL, 210, 5, 450, 505, productsWindow, NULL, hInstance, NULL );
+    productsBox = CreateWindowEx( WS_EX_CLIENTEDGE, TEXT("LISTBOX"), NULL, WS_CHILD | WS_VISIBLE | WS_BORDER,
+            210, 5, 450, 505, productsWindow, NULL, hInstance, NULL );
 
     ShowWindow( entryWindow, nCmdShow );
 
@@ -264,7 +264,7 @@ LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ){
                     ShowWindow( hwnd, SW_HIDE );
                     break;
                 case BTN_MAIN_PRODUCTS:
-                    SetWindowText( productsMessage, TEXT("abc") );
+                    //SetWindowText( productsMessage, TEXT("puste pole") );
                     row = 0; //aktualny wiersz, zerowanie dla nowego sqla
                     rc = sqlite3_open("db/test.db", &db);
                     sql = "SELECT * FROM produkty";
@@ -273,26 +273,38 @@ LRESULT CALLBACK WndProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam ){
                     //std::cout << content[0][0] << content[0][1] << content[0][2] << content[0][3] << content[0][4] << std::endl; //testy
                     //std::cout << "wiersze: " << row << std::endl;
 
-                    for(i = 1;i<=row;i++){
-                        std::cout << "rekord " << i << std::endl;
+                    SendMessage( productsBox, LB_RESETCONTENT, 0, 0); //czyszczenie listy
+                    SendMessage( productsBox, LB_ADDSTRING, 0,( LPARAM ) TEXT("ID | NAZWA | JEDNOSTKA | CENA | VAT") );
+                    for(i = 0;i<row;i++){
+                        strcpy(buff, ""); // zerowanie bufora
+                        strcat(buff, content[i][0].c_str());
+                        strcat(buff, " | ");
+                        strcat(buff, content[i][1].c_str());
+                        strcat(buff, " | ");
+                        strcat(buff, content[i][2].c_str());
+                        strcat(buff, " | ");
+                        strcat(buff, content[i][3].c_str());
+                        strcat(buff, " | ");
+                        strcat(buff, content[i][4].c_str());
+                        SendMessage( productsBox, LB_ADDSTRING, 0,( LPARAM ) buff );
                     }
 
-                    strcpy(buff, ""); // zerowanie bufora
-                    std::cout << "string contentu:: " << content[0][1] << std::endl;
-                    std::cout << "char* contentu:: " << content[0][1].c_str() << std::endl; // ok?
-                    std::cout << "char* buff:: " << buff << std::endl; // ok?
+                    //std::cout << "string contentu:: " << content[0][1] << std::endl;
+                    //std::cout << "char* contentu:: " << content[0][1].c_str() << std::endl; // c_str() do zamiany stringa na char żeby sklejać
+                    //std::cout << "char* buff:: " << buff << std::endl; // ok?
 
                     //buff += '';
 
 
-                    strcat(buff,content[0][1].c_str());
-                    std::cout << "połączone :: " << buff << std::endl; // ok?
+                    //strcat(buff,content[0][1].c_str());
+                    //std::cout << "połączone :: " << buff << std::endl; // ok?
 
                     //buff = "sklejone śmieci z zapytań";
                     mbstowcs(wtext, buff, strlen(buff)+1);//Plus null
                     ptr = wtext;
                     row = 0;
-                    MessageBoxEx(hwnd, ptr, NULL, MB_ICONINFORMATION, NULL);
+                    //MessageBoxEx(hwnd, ptr, NULL, MB_ICONINFORMATION, NULL);
+                    //SetWindowText( productsMessage, ptr );
                     ShowWindow( productsWindow, SW_SHOW );
                     ShowWindow( hwnd, SW_HIDE );
                     break;
