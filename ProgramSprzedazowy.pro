@@ -23,6 +23,7 @@ SOURCES += \
     mainwindow.cpp \
     productswindow.cpp \
     saleswindow.cpp \
+    sql.cpp \
     supplieswindow.cpp
 
 HEADERS += \
@@ -32,6 +33,7 @@ HEADERS += \
     mainwindow.h \
     productswindow.h \
     saleswindow.h \
+    sql.h \
     supplieswindow.h
 
 FORMS += \
