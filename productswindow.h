@@ -18,6 +18,12 @@ public:
 private slots:
     void on_button_addNew_clicked();
 
+    void on_combo_select_activated(const QString &arg1);
+
+    void on_button_editSelected_clicked();
+
+    void on_button_removeSelected_clicked();
+
 private:
     Ui::productsWindow *ui;
 private:

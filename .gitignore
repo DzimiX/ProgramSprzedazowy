@@ -1,5 +1,5 @@
 .idea/
 build/
 db/
-ProgramSprzedazowy.pro.user.ab1470f
-ProgramSprzedazowy.pro.user
+*.user
+*.user.*
