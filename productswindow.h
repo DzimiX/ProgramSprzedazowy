@@ -15,8 +15,13 @@ public:
     explicit productsWindow(QWidget *parent = nullptr);
     ~productsWindow();
 
+private slots:
+    void on_button_addNew_clicked();
+
 private:
     Ui::productsWindow *ui;
+private:
+    void updateProductList();
 };
 
 #endif // PRODUCTSWINDOW_H
