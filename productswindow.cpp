@@ -73,8 +73,18 @@ void productsWindow::on_combo_select_activated(const QString &arg1)
 
 void productsWindow::on_button_editSelected_clicked()
 {
-    qDebug() << ui->combo_select->currentText();
+    if(ui->combo_select->currentText()=="ID"){
+        qDebug() << "Nie wybrano rekordu!";
+    }else{
+        int id = ui->combo_select->currentText().toInt();
+        qDebug() << id;
 
+        updateProductList();
+
+        editProducts editProducts;
+        editProducts.setModal(true);
+        editProducts.exec();
+    }
 }
 
 void productsWindow::on_button_removeSelected_clicked()
@@ -82,14 +92,14 @@ void productsWindow::on_button_removeSelected_clicked()
     if(ui->combo_select->currentText()=="ID"){
         qDebug() << "Nie wybrano rekordu!";
     }else{
-        int remove = ui->combo_select->currentText().toInt();
-        qDebug() << remove;
+        int id = ui->combo_select->currentText().toInt();
+        qDebug() << id;
         sql conn;
         conn.dbOpen();
         QSqlQuery *query = new QSqlQuery(conn.db);
 
         query->prepare("delete from produkty where id=:id");
-        query->bindValue(":id",remove);
+        query->bindValue(":id",id);
         query->exec();
         conn.dbClose();
 

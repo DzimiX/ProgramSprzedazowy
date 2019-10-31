@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     clientswindow.cpp \
     companywindow.cpp \
+    editproducts.cpp \
     main.cpp \
     entrywindow.cpp \
     mainwindow.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 HEADERS += \
     clientswindow.h \
     companywindow.h \
+    editproducts.h \
     entrywindow.h \
     mainwindow.h \
     productswindow.h \
@@ -39,6 +41,7 @@ HEADERS += \
 FORMS += \
     clientswindow.ui \
     companywindow.ui \
+    editproducts.ui \
     entrywindow.ui \
     mainwindow.ui \
     productswindow.ui \

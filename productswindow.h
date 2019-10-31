@@ -2,6 +2,7 @@
 #define PRODUCTSWINDOW_H
 
 #include <QDialog>
+#include "editproducts.h"
 
 namespace Ui {
 class productsWindow;
