@@ -27,7 +27,7 @@ private slots:
 
 private:
     Ui::productsWindow *ui;
-private:
+public:
     void updateProductList();
 };
 

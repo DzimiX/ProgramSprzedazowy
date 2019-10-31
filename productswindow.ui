@@ -193,4 +193,7 @@
  </widget>
  <resources/>
  <connections/>
+ <slots>
+  <slot>updateProducts()</slot>
+ </slots>
 </ui>

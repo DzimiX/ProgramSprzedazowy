@@ -147,17 +147,20 @@
   <widget class="QLabel" name="output_id">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>110</x>
      <y>10</y>
-     <width>81</width>
-     <height>16</height>
+     <width>51</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;&gt;:ID&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>1</string>
    </property>
   </widget>
  </widget>
  <resources/>
  <connections/>
+ <slots>
+  <signal>editClicked()</signal>
+ </slots>
 </ui>

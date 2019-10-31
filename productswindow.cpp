@@ -3,11 +3,12 @@
 #include "sql.h"
 #include <QtSql>
 #include <QtDebug>
+#include <QObject>
 
 productsWindow::productsWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::productsWindow)
-{
+{   
     ui->setupUi(this);
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
     updateProductList();
@@ -18,7 +19,7 @@ productsWindow::~productsWindow()
     delete ui;
 }
 
-void productsWindow::updateProductList(){
+ void productsWindow::updateProductList(){
     sql conn;
     QSqlQueryModel *modal = new QSqlQueryModel;
     conn.dbOpen();
@@ -77,12 +78,13 @@ void productsWindow::on_button_editSelected_clicked()
         qDebug() << "Nie wybrano rekordu!";
     }else{
         int id = ui->combo_select->currentText().toInt();
-        qDebug() << id;
+        //qDebug() << id;
 
         updateProductList();
 
         editProducts editProducts;
         editProducts.setModal(true);
+        editProducts.reciveProductId(id);
         editProducts.exec();
     }
 }
@@ -93,7 +95,7 @@ void productsWindow::on_button_removeSelected_clicked()
         qDebug() << "Nie wybrano rekordu!";
     }else{
         int id = ui->combo_select->currentText().toInt();
-        qDebug() << id;
+        //qDebug() << id;
         sql conn;
         conn.dbOpen();
         QSqlQuery *query = new QSqlQuery(conn.db);
