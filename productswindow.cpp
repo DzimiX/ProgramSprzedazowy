@@ -86,6 +86,7 @@ void productsWindow::on_button_editSelected_clicked()
         editProducts.setModal(true);
         editProducts.reciveProductId(id);
         editProducts.exec();
+        updateProductList();
     }
 }
 
