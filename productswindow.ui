@@ -223,6 +223,19 @@
     <string>Edytuj</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>420</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Wróć</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

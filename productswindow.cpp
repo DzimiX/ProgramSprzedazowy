@@ -67,11 +67,6 @@ void productsWindow::on_button_addNew_clicked()
     updateProductList();
 }
 
-void productsWindow::on_combo_select_activated(const QString &arg1)
-{
-
-}
-
 void productsWindow::on_button_editSelected_clicked()
 {
     if(ui->combo_select->currentText()=="ID"){
@@ -80,7 +75,7 @@ void productsWindow::on_button_editSelected_clicked()
         int id = ui->combo_select->currentText().toInt();
         //qDebug() << id;
 
-        updateProductList();
+        //updateProductList();
 
         editProducts editProducts;
         editProducts.setModal(true);
@@ -107,5 +102,21 @@ void productsWindow::on_button_removeSelected_clicked()
         conn.dbClose();
 
         updateProductList();
+    }
+}
+
+void productsWindow::on_pushButton_clicked()
+{
+    productsWindow::close();
+}
+
+void productsWindow::on_tableView_clicked()
+{
+    QItemSelectionModel *select = ui->tableView->selectionModel();
+    QString value = select->selectedRows(0).value(0).data().toString();
+
+    int comboIndex = ui->combo_select->findText(value);
+    if ( comboIndex != -1 ) { // -1 for not found
+       ui->combo_select->setCurrentIndex(comboIndex);
     }
 }
