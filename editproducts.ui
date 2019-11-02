@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Edycja produktu</string>
   </property>
   <widget class="QLineEdit" name="input_name">
    <property name="geometry">

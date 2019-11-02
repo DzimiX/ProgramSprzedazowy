@@ -2,6 +2,8 @@
 #define COMPANYWINDOW_H
 
 #include <QDialog>
+#include <QtSql>
+#include "sql.h"
 
 namespace Ui {
 class companyWindow;
@@ -14,6 +16,11 @@ class companyWindow : public QDialog
 public:
     explicit companyWindow(QWidget *parent = nullptr);
     ~companyWindow();
+
+private slots:
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::companyWindow *ui;

@@ -11,6 +11,7 @@ productsWindow::productsWindow(QWidget *parent) :
 {   
     ui->setupUi(this);
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     updateProductList();
 }
 

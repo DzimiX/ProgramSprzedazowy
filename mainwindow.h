@@ -34,6 +34,7 @@ private slots:
 
 private:
     Ui::mainWindow *ui;
+    void updateStaticText();
 };
 
 #endif // MAINWINDOW_H
