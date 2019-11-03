@@ -42,9 +42,10 @@ void salesWindow::on_button_contiune_clicked()
 {
     QString comboText = ui->comboBox->currentText();
     if( comboText!="" ){
-        qDebug() << "nowa sprzedaż";
-        qDebug() << comboText;
         salesCreate salesCreate;
+        salesCreate.createInvoice(comboText);
+        salesCreate.setModal(true);
+        salesCreate.exec();
         salesWindow::close();
     }else{
         qDebug() << "Niepoprawny wybór!";
