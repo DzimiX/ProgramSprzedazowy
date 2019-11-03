@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Dodawanie nowego kontrahenta</string>
   </property>
   <widget class="QLineEdit" name="output_city">
    <property name="geometry">

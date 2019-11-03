@@ -5,6 +5,7 @@
 #include <QSql>
 #include <QtDebug>
 #include <QObject>
+#include <QMessageBox>
 #include "sql.h"
 #include "addclients.h"
 #include "editclients.h"
@@ -31,6 +32,7 @@ private slots:
     void on_button_editSelected_clicked();
     void on_button_removeSelected_clicked();
     void on_button_return_clicked();
+    void on_tableView_clicked(const QModelIndex &index);
 };
 
 #endif // CLIENTSWINDOW_H

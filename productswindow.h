@@ -2,6 +2,11 @@
 #define PRODUCTSWINDOW_H
 
 #include <QDialog>
+#include <QtSql>
+#include <QtDebug>
+#include <QObject>
+#include <QMessageBox>
+#include "sql.h"
 #include "editproducts.h"
 #include "addproducts.h"
 

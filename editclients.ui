@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Edycja danych kontrahenta</string>
   </property>
   <widget class="QLineEdit" name="output_postalCode">
    <property name="geometry">
@@ -305,7 +305,7 @@
     <string>ID klienta:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_13">
+  <widget class="QLabel" name="output_id">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -318,6 +318,32 @@
     <string>ID</string>
    </property>
   </widget>
+  <zorder>output_postalCode</zorder>
+  <zorder>label_8</zorder>
+  <zorder>output_REGON</zorder>
+  <zorder>output_street</zorder>
+  <zorder>output_phone</zorder>
+  <zorder>label_10</zorder>
+  <zorder>button_update</zorder>
+  <zorder>output_number</zorder>
+  <zorder>label_2</zorder>
+  <zorder>button_return</zorder>
+  <zorder>label_9</zorder>
+  <zorder>label</zorder>
+  <zorder>output_city</zorder>
+  <zorder>label_4</zorder>
+  <zorder>label_11</zorder>
+  <zorder>output_KRS</zorder>
+  <zorder>output_email</zorder>
+  <zorder>label_3</zorder>
+  <zorder>output_NIP</zorder>
+  <zorder>label_5</zorder>
+  <zorder>label_7</zorder>
+  <zorder>output_PESEL</zorder>
+  <zorder>label_6</zorder>
+  <zorder>label_12</zorder>
+  <zorder>output_id</zorder>
+  <zorder>output_name</zorder>
  </widget>
  <resources/>
  <connections/>

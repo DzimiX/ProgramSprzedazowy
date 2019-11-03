@@ -2,6 +2,7 @@
 #define EDITCLIENTS_H
 
 #include <QDialog>
+#include "sql.h"
 
 namespace Ui {
 class editClients;
@@ -10,6 +11,9 @@ class editClients;
 class editClients : public QDialog
 {
     Q_OBJECT
+
+public slots:
+    void reciveClientId( int id );
 
 public:
     explicit editClients(QWidget *parent = nullptr);
