@@ -20,7 +20,7 @@ productsWindow::~productsWindow()
     delete ui;
 }
 
- void productsWindow::updateProductList(){
+void productsWindow::updateProductList(){
     sql conn;
     QSqlQueryModel *modal = new QSqlQueryModel;
     conn.dbOpen();
@@ -47,7 +47,7 @@ void productsWindow::on_button_addNew_clicked()
 {
     QString name = ui->input_name->text();
     QString unit = ui->input_unit->text();
-    float price = ui->input_price->text().toFloat();
+    double price = ui->input_price->text().toDouble();
     int tax = ui->input_tax->text().toInt();
 
     //qDebug() << "Name: " << name << " Unit: " << unit << " Price: " << price << " Tax: " << tax; //ok
@@ -106,11 +106,6 @@ void productsWindow::on_button_removeSelected_clicked()
     }
 }
 
-void productsWindow::on_pushButton_clicked()
-{
-    productsWindow::close();
-}
-
 void productsWindow::on_tableView_clicked()
 {
     QItemSelectionModel *select = ui->tableView->selectionModel();
@@ -120,4 +115,17 @@ void productsWindow::on_tableView_clicked()
     if ( comboIndex != -1 ) { // -1 for not found
        ui->combo_select->setCurrentIndex(comboIndex);
     }
+}
+
+void productsWindow::on_button_return_clicked()
+{
+    productsWindow::close();
+}
+
+void productsWindow::on_button_newProduct_clicked()
+{
+    addProducts addProducts;
+    addProducts.setModal(true);
+    addProducts.exec();
+    updateProductList();
 }

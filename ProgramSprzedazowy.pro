@@ -16,8 +16,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    addclients.cpp \
+    addproducts.cpp \
     clientswindow.cpp \
     companywindow.cpp \
+    editclients.cpp \
     editproducts.cpp \
     main.cpp \
     entrywindow.cpp \
@@ -28,8 +31,11 @@ SOURCES += \
     supplieswindow.cpp
 
 HEADERS += \
+    addclients.h \
+    addproducts.h \
     clientswindow.h \
     companywindow.h \
+    editclients.h \
     editproducts.h \
     entrywindow.h \
     mainwindow.h \
@@ -39,8 +45,11 @@ HEADERS += \
     supplieswindow.h
 
 FORMS += \
+    addclients.ui \
+    addproducts.ui \
     clientswindow.ui \
     companywindow.ui \
+    editclients.ui \
     editproducts.ui \
     entrywindow.ui \
     mainwindow.ui \
