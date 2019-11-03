@@ -65,3 +65,10 @@ void mainWindow::updateStaticText(){
 
     conn.dbClose();
 }
+
+void mainWindow::on_pushButton_6_clicked()
+{
+    storageWindow storageWindow;
+    storageWindow.setModal(true);
+    storageWindow.exec();
+}
