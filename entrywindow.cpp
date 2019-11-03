@@ -19,6 +19,8 @@ entryWindow::~entryWindow()
 void entryWindow::on_pushButton_clicked()
 {
     hide();
-    mainWindow = new class mainWindow(this);
+    mainWindow = new class mainWindow();
+    this->setWindowState(Qt::WindowMinimized);
+    mainWindow->setWindowFlags(Qt::Window);
     mainWindow->show();
 }

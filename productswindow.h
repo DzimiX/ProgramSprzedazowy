@@ -2,7 +2,13 @@
 #define PRODUCTSWINDOW_H
 
 #include <QDialog>
+#include <QtSql>
+#include <QtDebug>
+#include <QObject>
+#include <QMessageBox>
+#include "sql.h"
 #include "editproducts.h"
+#include "addproducts.h"
 
 namespace Ui {
 class productsWindow;
@@ -23,9 +29,11 @@ private slots:
 
     void on_button_removeSelected_clicked();
 
-    void on_pushButton_clicked();
-
     void on_tableView_clicked();
+
+    void on_button_return_clicked();
+
+    void on_button_newProduct_clicked();
 
 private:
     Ui::productsWindow *ui;

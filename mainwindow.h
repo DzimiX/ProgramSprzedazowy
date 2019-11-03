@@ -18,7 +18,7 @@ class mainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit mainWindow(QWidget *parent = nullptr);
+    explicit mainWindow();
     ~mainWindow();
 
 private slots:
@@ -34,6 +34,7 @@ private slots:
 
 private:
     Ui::mainWindow *ui;
+    void updateStaticText();
 };
 
 #endif // MAINWINDOW_H

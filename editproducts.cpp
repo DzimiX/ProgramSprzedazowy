@@ -44,7 +44,7 @@ void editProducts::on_pushButton_clicked()
 {
     QString name = ui->input_name->text();
     QString unit = ui->input_unit->text();
-    float price = ui->input_price->text().toFloat();
+    double price = ui->input_price->text().toDouble();
     int tax = ui->input_tax->text().toInt();
     int id = ui->output_id->text().toInt();
 
@@ -53,7 +53,7 @@ void editProducts::on_pushButton_clicked()
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("update produkty set nazwa=:nazwa, jednostka=:jednostka, cena=:cena, VAT=:vat where id=:id;");
-    qDebug() << query;
+    //qDebug() << query;
     query->bindValue(":nazwa", name);
     query->bindValue(":jednostka", unit);
     query->bindValue(":cena", price);
@@ -61,8 +61,6 @@ void editProducts::on_pushButton_clicked()
     query->bindValue(":id", id);
     query->exec();
     conn.dbClose();
-
-
 
     editProducts::close();
 }
