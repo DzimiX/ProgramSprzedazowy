@@ -72,3 +72,10 @@ void mainWindow::on_pushButton_6_clicked()
     storageWindow.setModal(true);
     storageWindow.exec();
 }
+
+void mainWindow::on_pushButton_7_clicked()
+{
+    salesView salesView;
+    salesView.setModal(true);
+    salesView.exec();
+}

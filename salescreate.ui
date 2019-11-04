@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Tworzenie zamówienia</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -27,6 +27,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="button_print">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>525</x>
@@ -211,7 +214,7 @@
   <widget class="QPushButton" name="button_removeElement">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>495</x>
      <y>50</y>
      <width>110</width>
      <height>23</height>
@@ -224,14 +227,14 @@
   <widget class="QPushButton" name="button_addElement">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>280</x>
      <y>50</y>
-     <width>110</width>
+     <width>111</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Dodaj element</string>
+    <string>Dodaj nowy element</string>
    </property>
   </widget>
   <widget class="QTableView" name="tableView">
@@ -243,18 +246,34 @@
      <height>321</height>
     </rect>
    </property>
+   <property name="selectionBehavior">
+    <enum>QAbstractItemView::SelectRows</enum>
+   </property>
+   <attribute name="verticalHeaderVisible">
+    <bool>false</bool>
+   </attribute>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="button_cancel">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>15</x>
      <y>500</y>
-     <width>75</width>
+     <width>131</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>odsiwerz</string>
+    <string>ANULUJ ZAMÓWIENIE</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>50</y>
+     <width>81</width>
+     <height>22</height>
+    </rect>
    </property>
   </widget>
  </widget>

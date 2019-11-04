@@ -7,6 +7,8 @@ salesCreate::salesCreate(QWidget *parent) :
     ui(new Ui::salesCreate)
 {
     ui->setupUi(this);
+    ui->tableView->horizontalHeader()->setStretchLastSection(true);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 salesCreate::~salesCreate()
@@ -31,6 +33,7 @@ void salesCreate::createInvoice(QString clientName){
     query->seek(-1);
     query->next();
     int clientID = query->value(0).toInt();
+
     qDebug() << "id klienta: " << clientID;
     qDebug() << "data: " << QDateTime::currentDateTime().toString( "yyyy-MM-dd hh:mm:ss" );
 
@@ -73,11 +76,8 @@ void salesCreate::updateDetails(){
     query->next();
     QString clientName = query->value(1).toString();
 
-    id=11;
-    //nie dziala?
-    //jednak działa
-    //przerobić query żeby wyświetlało nazwę produktu i ilość
-    query->prepare("select produkty.nazwa,rozliczenia.ilosc from rozliczenia,produkty where rozliczenia.id_faktura=:id_faktura and rozliczenia.id_produkt=produkty.id");
+    //id=11; //statycznie do podglądu
+    query->prepare("select rozliczenia.id, produkty.nazwa as Nazwa,produkty.cena as Cena, produkty.VAT as VAT,rozliczenia.ilosc as Ilość, (produkty.cena * rozliczenia.ilosc) as Netto, (produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc) as 'Suma VAT', (produkty.cena * rozliczenia.ilosc + produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc) as Brutto from rozliczenia,produkty where rozliczenia.id_faktura=:id_faktura and rozliczenia.id_produkt=produkty.id");
     query->bindValue(":id_faktura",id);
     query->exec();
     QSqlQueryModel *modal = new QSqlQueryModel;
@@ -92,9 +92,89 @@ void salesCreate::updateDetails(){
 
     ui->output_date->setText(date);
     ui->output_client->setText(clientName);
+
+    double net = 0;
+    double gross = 0;
+    double tax = 0;
+
+    for (int row = 0; row < ui->tableView->model()->rowCount(); ++row) {
+        net += ui->tableView->model()->data(ui->tableView->model()->index(row,5)).toDouble();
+        tax += ui->tableView->model()->data(ui->tableView->model()->index(row,6)).toDouble();
+        gross += ui->tableView->model()->data(ui->tableView->model()->index(row,7)).toDouble();
+    }
+    ui->output_net->setNum(net);
+    ui->output_gross->setNum(gross);
+    ui->output_tax->setNum(tax);
+
+    fillCombo();
 }
 
-void salesCreate::on_pushButton_clicked()
+void salesCreate::on_button_cancel_clicked()
 {
-    salesCreate::updateDetails();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Anulowanie zamówienia", "Czy napewno chcesz anulować zamówienie?", QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        sql conn;
+        conn.dbOpen();
+        QSqlQuery *query = new QSqlQuery(conn.db);
+        int id = ui->output_id->text().toInt();
+        query->prepare("delete from rozliczenia where id_faktura=:id_faktura");
+        query->bindValue(":id_faktura",id);
+        query->exec();
+        query->prepare("delete from faktury where id=:id");
+        query->bindValue(":id",id);
+        query->exec();
+        conn.dbClose();
+        salesCreate::close();
+    } else {
+        updateDetails();
+    }
+}
+
+void salesCreate::on_button_addElement_clicked()
+{
+    salesAppendItem salesAppendItem;
+    salesAppendItem.appendTo(ui->output_id->text().toInt());
+    salesAppendItem.setModal(true);
+    salesAppendItem.exec();
+    updateDetails();
+}
+
+void salesCreate::fillCombo(){
+    sql conn;
+    conn.dbOpen();
+    QSqlQuery *query = new QSqlQuery(conn.db);
+    query->prepare("select id from rozliczenia where id_faktura=:id_faktura"); //nazwa jest unikalna dla każdego kontrahenta
+    int id = ui->output_id->text().toInt();
+    query->bindValue(":id_faktura",id);
+    query->exec();
+    query->seek(-1);
+    ui->comboBox->clear();
+    ui->comboBox->addItem("");
+    while(query->next()){
+        ui->comboBox->addItem( query->value(0).toString() );
+    }
+}
+
+void salesCreate::on_tableView_clicked(const QModelIndex &index)
+{
+    QItemSelectionModel *select = ui->tableView->selectionModel();
+    QString value = select->selectedRows(0).value(0).data().toString();
+
+    int comboIndex = ui->comboBox->findText(value);
+    if ( comboIndex != -1 ) { // -1 for not found
+       ui->comboBox->setCurrentIndex(comboIndex);
+    }
+}
+
+void salesCreate::on_button_removeElement_clicked()
+{
+    int id = ui->comboBox->currentText().toInt();
+    sql conn;
+    conn.dbOpen();
+    QSqlQuery *query = new QSqlQuery(conn.db);
+    query->prepare("delete from rozliczenia where id=:id"); //nazwa jest unikalna dla każdego kontrahenta
+    query->bindValue(":id",id);
+    query->exec();
+    updateDetails();
 }

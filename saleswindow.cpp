@@ -54,6 +54,9 @@ void salesWindow::on_button_contiune_clicked()
 
 void salesWindow::on_button_quickSell_clicked()
 {
-
+    salesCreate salesCreate;
+    salesCreate.createInvoice("PARAGON");
+    salesCreate.setModal(true);
+    salesCreate.exec();
     salesWindow::close();
 }

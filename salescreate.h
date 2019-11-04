@@ -6,7 +6,9 @@
 #include <QtSql>
 #include <QDateTime>
 #include <QObject>
+#include <QMessageBox>
 #include "sql.h"
+#include "salesappenditem.h"
 
 namespace Ui {
 class salesCreate;
@@ -23,11 +25,18 @@ public:
     explicit salesCreate(QWidget *parent = nullptr);
     ~salesCreate();
     void updateDetails();
+    void fillCombo();
 
 private slots:
     void on_button_quit_clicked();
 
-    void on_pushButton_clicked();
+    void on_button_cancel_clicked();
+
+    void on_button_addElement_clicked();
+
+    void on_tableView_clicked(const QModelIndex &index);
+
+    void on_button_removeElement_clicked();
 
 private:
     Ui::salesCreate *ui;

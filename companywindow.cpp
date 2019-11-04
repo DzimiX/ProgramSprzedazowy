@@ -7,7 +7,6 @@ companyWindow::companyWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
     sql conn;
     conn.dbOpen();
     QSqlQuery *query = new QSqlQuery(conn.db);
@@ -31,7 +30,6 @@ companyWindow::companyWindow(QWidget *parent) :
     ui->output_postalCode->setText(query->value(10).toString());
 
     conn.dbClose();
-
 }
 
 companyWindow::~companyWindow()
