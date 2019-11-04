@@ -86,7 +86,7 @@ void salesCreate::updateDetails(){
 
     query->seek(-1);
     while(query->next()){
-        qDebug() << query->value(0);
+        //qDebug() << query->value(0);
     }
     conn.dbClose();
 
@@ -112,7 +112,7 @@ void salesCreate::updateDetails(){
 void salesCreate::on_button_cancel_clicked()
 {
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Anulowanie zamówienia", "Czy napewno chcesz anulować zamówienie?", QMessageBox::Yes|QMessageBox::No);
+    reply = QMessageBox::question(this, "Anulowanie zamówienia", "Czy napewno chcesz anulować zamówienie? (tej operacji nie można cofnąć)", QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         sql conn;
         conn.dbOpen();
@@ -156,7 +156,7 @@ void salesCreate::fillCombo(){
     }
 }
 
-void salesCreate::on_tableView_clicked(const QModelIndex &index)
+void salesCreate::on_tableView_clicked()
 {
     QItemSelectionModel *select = ui->tableView->selectionModel();
     QString value = select->selectedRows(0).value(0).data().toString();
@@ -173,7 +173,7 @@ void salesCreate::on_button_removeElement_clicked()
     sql conn;
     conn.dbOpen();
     QSqlQuery *query = new QSqlQuery(conn.db);
-    query->prepare("delete from rozliczenia where id=:id"); //nazwa jest unikalna dla każdego kontrahenta
+    query->prepare("delete from rozliczenia where id=:id");
     query->bindValue(":id",id);
     query->exec();
     updateDetails();

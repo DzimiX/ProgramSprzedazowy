@@ -25,9 +25,7 @@ public:
 
 private slots:
     void on_comboBox_activated();
-
     void on_button_return_clicked();
-
     void on_button_add_clicked();
 
 private:

@@ -19,9 +19,7 @@ public:
 
 private slots:
     void on_button_return_clicked();
-
     void on_button_contiune_clicked();
-
     void on_button_quickSell_clicked();
 
 private:

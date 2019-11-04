@@ -28,6 +28,7 @@ SOURCES += \
     productswindow.cpp \
     salesappenditem.cpp \
     salescreate.cpp \
+    salesdetail.cpp \
     salesview.cpp \
     saleswindow.cpp \
     sql.cpp \
@@ -46,6 +47,7 @@ HEADERS += \
     productswindow.h \
     salesappenditem.h \
     salescreate.h \
+    salesdetail.h \
     salesview.h \
     saleswindow.h \
     sql.h \
@@ -64,6 +66,7 @@ FORMS += \
     productswindow.ui \
     salesappenditem.ui \
     salescreate.ui \
+    salesdetail.ui \
     salesview.ui \
     saleswindow.ui \
     storagewindow.ui \

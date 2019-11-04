@@ -21,7 +21,6 @@ public:
 
 private slots:
     void on_button_update_clicked();
-
     void on_button_return_clicked();
 
 private:
