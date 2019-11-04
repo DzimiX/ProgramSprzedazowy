@@ -18,7 +18,6 @@ public:
 
 private slots:
     void on_button_add_clicked();
-
     void on_button_return_clicked();
 
 private:

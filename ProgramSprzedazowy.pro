@@ -26,8 +26,13 @@ SOURCES += \
     entrywindow.cpp \
     mainwindow.cpp \
     productswindow.cpp \
+    salesappenditem.cpp \
+    salescreate.cpp \
+    salesdetail.cpp \
+    salesview.cpp \
     saleswindow.cpp \
     sql.cpp \
+    storagewindow.cpp \
     supplieswindow.cpp
 
 HEADERS += \
@@ -40,8 +45,13 @@ HEADERS += \
     entrywindow.h \
     mainwindow.h \
     productswindow.h \
+    salesappenditem.h \
+    salescreate.h \
+    salesdetail.h \
+    salesview.h \
     saleswindow.h \
     sql.h \
+    storagewindow.h \
     supplieswindow.h
 
 FORMS += \
@@ -54,7 +64,12 @@ FORMS += \
     entrywindow.ui \
     mainwindow.ui \
     productswindow.ui \
+    salesappenditem.ui \
+    salescreate.ui \
+    salesdetail.ui \
+    salesview.ui \
     saleswindow.ui \
+    storagewindow.ui \
     supplieswindow.ui
 
 # Default rules for deployment.

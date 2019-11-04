@@ -65,3 +65,17 @@ void mainWindow::updateStaticText(){
 
     conn.dbClose();
 }
+
+void mainWindow::on_pushButton_6_clicked()
+{
+    storageWindow storageWindow;
+    storageWindow.setModal(true);
+    storageWindow.exec();
+}
+
+void mainWindow::on_pushButton_7_clicked()
+{
+    salesView salesView;
+    salesView.setModal(true);
+    salesView.exec();
+}
