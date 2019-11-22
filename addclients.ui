@@ -58,7 +58,7 @@
     <rect>
      <x>160</x>
      <y>190</y>
-     <width>33</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
@@ -71,7 +71,7 @@
     <rect>
      <x>160</x>
      <y>145</y>
-     <width>23</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
@@ -114,7 +114,7 @@
     <rect>
      <x>10</x>
      <y>145</y>
-     <width>34</width>
+     <width>91</width>
      <height>16</height>
     </rect>
    </property>
@@ -127,7 +127,7 @@
     <rect>
      <x>10</x>
      <y>100</y>
-     <width>25</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
@@ -140,7 +140,7 @@
     <rect>
      <x>159</x>
      <y>234</y>
-     <width>38</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
@@ -166,7 +166,7 @@
     <rect>
      <x>9</x>
      <y>234</y>
-     <width>28</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
@@ -179,7 +179,7 @@
     <rect>
      <x>160</x>
      <y>100</y>
-     <width>39</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
@@ -222,7 +222,7 @@
     <rect>
      <x>10</x>
      <y>55</y>
-     <width>35</width>
+     <width>111</width>
      <height>16</height>
     </rect>
    </property>
@@ -235,7 +235,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>111</width>
+     <width>181</width>
      <height>16</height>
     </rect>
    </property>
@@ -261,7 +261,7 @@
     <rect>
      <x>10</x>
      <y>190</y>
-     <width>70</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
@@ -284,7 +284,7 @@
     <rect>
      <x>160</x>
      <y>55</y>
-     <width>21</width>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>

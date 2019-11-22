@@ -20,7 +20,7 @@ void salesAppendItem::appendTo(int invoiceId){
 
 void salesAppendItem::fillComboBox(){
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select * from produkty");
@@ -35,7 +35,7 @@ void salesAppendItem::fillComboBox(){
 
 void salesAppendItem::refreshStaticText(){
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
     query->prepare("select * from produkty where nazwa=:nazwa");
     query->bindValue(":nazwa",ui->comboBox->currentText());
@@ -60,7 +60,7 @@ void salesAppendItem::on_button_return_clicked()
 void salesAppendItem::on_button_add_clicked()
 {
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
     query->prepare("select * from produkty where nazwa=:nazwa");
     query->bindValue(":nazwa",ui->comboBox->currentText());

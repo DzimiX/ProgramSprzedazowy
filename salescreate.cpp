@@ -23,7 +23,7 @@ void salesCreate::on_button_quit_clicked()
 
 void salesCreate::createInvoice(QString clientName){
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select * from kontrahenci where nazwa=:nazwa"); //nazwa jest unikalna dla każdego kontrahenta
@@ -54,7 +54,7 @@ void salesCreate::createInvoice(QString clientName){
 
 void salesCreate::updateDetails(){
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     int id = ui->output_id->text().toInt();
@@ -115,7 +115,7 @@ void salesCreate::on_button_cancel_clicked()
     reply = QMessageBox::question(this, "Anulowanie zamówienia", "Czy napewno chcesz anulować zamówienie? (tej operacji nie można cofnąć)", QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         sql conn;
-        conn.dbOpen();
+        conn.dbOpen(conn.location);
         QSqlQuery *query = new QSqlQuery(conn.db);
         int id = ui->output_id->text().toInt();
         query->prepare("delete from rozliczenia where id_faktura=:id_faktura");
@@ -142,7 +142,7 @@ void salesCreate::on_button_addElement_clicked()
 
 void salesCreate::fillCombo(){
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
     query->prepare("select id from rozliczenia where id_faktura=:id_faktura"); //nazwa jest unikalna dla każdego kontrahenta
     int id = ui->output_id->text().toInt();
@@ -171,7 +171,7 @@ void salesCreate::on_button_removeElement_clicked()
 {
     int id = ui->comboBox->currentText().toInt();
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
     query->prepare("delete from rozliczenia where id=:id");
     query->bindValue(":id",id);

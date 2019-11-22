@@ -21,7 +21,7 @@ void addProducts::on_button_add_clicked()
     int tax = ui->input_tax->text().toInt();
 
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("insert into produkty (nazwa, jednostka, cena, vat) values (:nazwa, :jednostka, :cena, :vat)");

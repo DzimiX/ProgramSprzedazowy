@@ -22,7 +22,7 @@ void editProducts::reciveProductId(int id){
     ui->output_id->setNum(id);
 
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select * from produkty where id=:id");
@@ -49,7 +49,7 @@ void editProducts::on_pushButton_clicked()
     int id = ui->output_id->text().toInt();
 
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("update produkty set nazwa=:nazwa, jednostka=:jednostka, cena=:cena, VAT=:vat where id=:id;");

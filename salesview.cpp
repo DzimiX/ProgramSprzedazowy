@@ -23,7 +23,7 @@ void salesView::on_button_return_clicked()
 
 void salesView::updateDisplay(){
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select faktury.id as ID,kontrahenci.nazwa as Kontrahent,faktury.data as Data,faktury.komentarz as Komentarz from faktury,kontrahenci where faktury.id_kontrahent=kontrahenci.id order by faktury.data desc;");
@@ -39,7 +39,7 @@ void salesView::updateDisplay(){
 
 void salesView::updateComboBox(){
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select faktury.id from faktury,kontrahenci where faktury.id_kontrahent=kontrahenci.id order by faktury.id;");

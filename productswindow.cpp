@@ -19,7 +19,7 @@ productsWindow::~productsWindow()
 void productsWindow::updateProductList(){
     sql conn;
     QSqlQueryModel *modal = new QSqlQueryModel;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select * from produkty");
@@ -49,7 +49,7 @@ void productsWindow::on_button_addNew_clicked()
     //qDebug() << "Name: " << name << " Unit: " << unit << " Price: " << price << " Tax: " << tax; //ok
 
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("insert into produkty (nazwa, jednostka, cena, vat) VALUES (:nazwa, :jednostka, :cena, :vat);");
@@ -92,7 +92,7 @@ void productsWindow::on_button_removeSelected_clicked()
         if (reply == QMessageBox::Yes) {
             int id = ui->combo_select->currentText().toInt();
             sql conn;
-            conn.dbOpen();
+            conn.dbOpen(conn.location);
             QSqlQuery *query = new QSqlQuery(conn.db);
             query->prepare("delete from produkty where id=:id");
             query->bindValue(":id",id);

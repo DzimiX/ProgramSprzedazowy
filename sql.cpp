@@ -1,9 +1,8 @@
 #include "sql.h"
 
-
-bool sql::dbOpen(void){
+bool sql::dbOpen(QString location){
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:/db/test.db");
+    db.setDatabaseName(location);
     if(!db.open()){
         return false;
     }else{
@@ -15,6 +14,24 @@ void sql::dbClose(void){
     db.removeDatabase(QSqlDatabase::defaultConnection);
 }
 
+bool sql::dbExists(QString location){
+    QFile file(location);
+    if(QFileInfo::exists(location)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 void sql::dbCreate(QString location){
-    //not yet implemented
+    QFile file(location);
+    if(!dbExists(location)){
+        if (file.open(QIODevice::ReadWrite)) {
+            QTextStream stream(&file);
+        }
+
+        //open db conn with file
+        //exec create db queries
+        //exec init db queries
+    }
 }

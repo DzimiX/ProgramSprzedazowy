@@ -28,7 +28,7 @@ void addClients::on_button_add_clicked()
     QString postalCode = ui->output_postalCode->text();
 
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("insert into kontrahenci (nazwa, NIP, REGON, KRS, PESEL, email, telefon, adres_miasto, adres_ulica, adres_numer, adres_kodPocztowy) values (:nazwa, :NIP, :REGON, :KRS, :PESEL, :email, :telefon, :adres_miasto, :adres_ulica, :adres_numer, :adres_kodPocztowy)");

@@ -18,7 +18,7 @@ salesDetail::~salesDetail()
 void salesDetail::updateDetails(int invoiceId){
     ui->output_invoiceId->setNum(invoiceId);
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
     query->prepare("select kontrahenci.nazwa,faktury.data from faktury,kontrahenci where faktury.id=:id and faktury.id_kontrahent=kontrahenci.id");
     query->bindValue(":id",invoiceId);
@@ -62,7 +62,7 @@ void salesDetail::on_button_cancel_clicked()
     reply = QMessageBox::question(this, "Anulowanie zamówienia", "Czy napewno chcesz anulować zamówienie? (tej operacji nie można cofnąć)", QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         sql conn;
-        conn.dbOpen();
+        conn.dbOpen(conn.location);
         QSqlQuery *query = new QSqlQuery(conn.db);
         int id = ui->output_invoiceId->text().toInt();
         query->prepare("delete from rozliczenia where id_faktura=:id_faktura");

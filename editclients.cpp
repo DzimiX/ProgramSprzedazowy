@@ -17,7 +17,7 @@ void editClients::reciveClientId(int id){
     ui->output_id->setNum(id);
 
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select * from kontrahenci where id=:id");
@@ -57,7 +57,7 @@ void editClients::on_button_update_clicked()
     int id = ui->output_id->text().toInt();
 
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("update kontrahenci set nazwa=:nazwa,NIP=:NIP,REGON=:REGON,KRS=:KRS,PESEL=:PESEL,email=:email,telefon=:telefon,adres_miasto=:adres_miasto,adres_ulica=:adres_ulica,adres_numer=:adres_numer,adres_kodPocztowy=:adres_kodPocztowy where id=:id;");
