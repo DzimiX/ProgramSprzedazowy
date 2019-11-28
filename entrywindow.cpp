@@ -19,13 +19,13 @@ entryWindow::~entryWindow()
 
 void entryWindow::on_pushButton_clicked()
 {
+    sql sql;
+    if(!sql.dbExists(sql.location)){
+        sql.dbCreate(sql.location);
+    }
     hide();
     mainWindow = new class mainWindow();
     this->setWindowState(Qt::WindowMinimized);
     mainWindow->setWindowFlags(Qt::Window);
     mainWindow->show();
-    sql sql;
-    if(!sql.dbExists(sql.location)){
-        sql.dbCreate(sql.location);
-    }
 }
