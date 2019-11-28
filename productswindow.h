@@ -23,7 +23,6 @@ public:
     ~productsWindow();
 
 private slots:
-    void on_button_addNew_clicked();
     void on_button_editSelected_clicked();
     void on_button_removeSelected_clicked();
     void on_tableView_clicked();

@@ -24,6 +24,7 @@ void addProducts::on_button_add_clicked()
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
+
     query->prepare("insert into produkty (nazwa, jednostka, cena, vat) values (:nazwa, :jednostka, :cena, :vat)");
     //qDebug() << query;
     query->bindValue(":nazwa", name);

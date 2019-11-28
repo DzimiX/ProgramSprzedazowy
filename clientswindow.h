@@ -32,7 +32,7 @@ private slots:
     void on_button_editSelected_clicked();
     void on_button_removeSelected_clicked();
     void on_button_return_clicked();
-    void on_tableView_clicked(const QModelIndex &index);
+    void on_tableView_clicked();
 };
 
 #endif // CLIENTSWINDOW_H

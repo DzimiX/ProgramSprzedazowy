@@ -3,10 +3,29 @@
 #include <QGuiApplication>
 #include <QApplication>
 #include <QtSql>
+#include <QTranslator>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    QTranslator qtTranslator;
+    if (qtTranslator.load(QLocale::system(),
+                "qt", "_",
+                QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+    {
+        qDebug() << "qtTranslator ok";
+        a.installTranslator(&qtTranslator);
+    }
+
+    QTranslator qtBaseTranslator;
+    if (qtBaseTranslator.load("qtbase_" + QLocale::system().name(),
+                QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+    {
+        qDebug() << "qtBaseTranslator ok";
+        a.installTranslator(&qtBaseTranslator);
+    }
+
     a.setQuitOnLastWindowClosed(false);
     entryWindow w;
     w.show();
