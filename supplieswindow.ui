@@ -55,7 +55,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Ostatnie dostawy:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="newSupply">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -68,7 +68,7 @@
     <string>Nowa dostawa</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="editSupply">
    <property name="geometry">
     <rect>
      <x>170</x>
