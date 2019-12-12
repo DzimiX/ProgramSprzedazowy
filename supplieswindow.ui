@@ -73,12 +73,12 @@
     <rect>
      <x>170</x>
      <y>380</y>
-     <width>101</width>
+     <width>111</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Korekta dostawy</string>
+    <string>Szczegóły dostawy</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox">
