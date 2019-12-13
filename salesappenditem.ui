@@ -190,6 +190,12 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>comboBox</tabstop>
+  <tabstop>input_amount</tabstop>
+  <tabstop>button_add</tabstop>
+  <tabstop>button_return</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

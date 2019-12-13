@@ -26,9 +26,9 @@ void storageWindow::updateDetails(){
 
     query->prepare("SELECT id_produkt as ID, Nazwa, sum(ilosc) from "
                    "("
-                   "SELECT rozliczenia.id_produkt, produkty.nazwa as Nazwa, rozliczenia.ilosc as ilosc from produkty,rozliczenia,faktury where rozliczenia.id_produkt=produkty.id and rozliczenia.id_faktura=faktury.id and faktury.id_kontrahent==1 group by rozliczenia.id_produkt "
+                   "SELECT rozliczenia.id_produkt, produkty.nazwa as Nazwa, sum(rozliczenia.ilosc) as ilosc from produkty,rozliczenia,faktury where rozliczenia.id_produkt=produkty.id and rozliczenia.id_faktura=faktury.id and faktury.id_kontrahent==1 group by rozliczenia.id_produkt "
                    "UNION ALL "
-                   "SELECT rozliczenia.id_produkt, produkty.nazwa as Nazwa, -1*rozliczenia.ilosc as ilosc from produkty,rozliczenia,faktury where rozliczenia.id_produkt=produkty.id and rozliczenia.id_faktura=faktury.id and faktury.id_kontrahent!=1 group by rozliczenia.id_produkt "
+                   "SELECT rozliczenia.id_produkt, produkty.nazwa as Nazwa, sum(-1*rozliczenia.ilosc) as ilosc from produkty,rozliczenia,faktury where rozliczenia.id_produkt=produkty.id and rozliczenia.id_faktura=faktury.id and faktury.id_kontrahent!=1 group by rozliczenia.id_produkt "
                    ") "
                    "GROUP BY id_produkt");
     query->exec();

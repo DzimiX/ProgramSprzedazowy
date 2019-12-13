@@ -345,6 +345,21 @@
   <zorder>output_id</zorder>
   <zorder>output_name</zorder>
  </widget>
+ <tabstops>
+  <tabstop>output_name</tabstop>
+  <tabstop>output_city</tabstop>
+  <tabstop>output_street</tabstop>
+  <tabstop>output_number</tabstop>
+  <tabstop>output_postalCode</tabstop>
+  <tabstop>output_email</tabstop>
+  <tabstop>output_NIP</tabstop>
+  <tabstop>output_REGON</tabstop>
+  <tabstop>output_KRS</tabstop>
+  <tabstop>output_PESEL</tabstop>
+  <tabstop>output_phone</tabstop>
+  <tabstop>button_update</tabstop>
+  <tabstop>button_return</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
