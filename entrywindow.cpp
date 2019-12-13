@@ -1,5 +1,6 @@
 #include "entrywindow.h"
 #include "ui_entrywindow.h"
+#include "sql.h"
 
 entryWindow::entryWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,6 +19,10 @@ entryWindow::~entryWindow()
 
 void entryWindow::on_pushButton_clicked()
 {
+    sql sql;
+    if(!sql.dbExists(sql.location)){
+        sql.dbCreate(sql.location);
+    }
     hide();
     mainWindow = new class mainWindow();
     this->setWindowState(Qt::WindowMinimized);

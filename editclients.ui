@@ -28,7 +28,7 @@
     <rect>
      <x>160</x>
      <y>130</y>
-     <width>39</width>
+     <width>131</width>
      <height>16</height>
     </rect>
    </property>
@@ -71,7 +71,7 @@
     <rect>
      <x>9</x>
      <y>264</y>
-     <width>28</width>
+     <width>131</width>
      <height>16</height>
     </rect>
    </property>
@@ -117,7 +117,7 @@
     <rect>
      <x>10</x>
      <y>85</y>
-     <width>35</width>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>
@@ -143,7 +143,7 @@
     <rect>
      <x>160</x>
      <y>175</y>
-     <width>23</width>
+     <width>131</width>
      <height>16</height>
     </rect>
    </property>
@@ -156,7 +156,7 @@
     <rect>
      <x>10</x>
      <y>40</y>
-     <width>111</width>
+     <width>271</width>
      <height>16</height>
     </rect>
    </property>
@@ -179,7 +179,7 @@
     <rect>
      <x>160</x>
      <y>85</y>
-     <width>21</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
@@ -192,7 +192,7 @@
     <rect>
      <x>159</x>
      <y>264</y>
-     <width>38</width>
+     <width>131</width>
      <height>16</height>
     </rect>
    </property>
@@ -225,7 +225,7 @@
     <rect>
      <x>10</x>
      <y>130</y>
-     <width>25</width>
+     <width>91</width>
      <height>16</height>
     </rect>
    </property>
@@ -248,7 +248,7 @@
     <rect>
      <x>10</x>
      <y>175</y>
-     <width>34</width>
+     <width>111</width>
      <height>16</height>
     </rect>
    </property>
@@ -261,7 +261,7 @@
     <rect>
      <x>160</x>
      <y>220</y>
-     <width>33</width>
+     <width>131</width>
      <height>16</height>
     </rect>
    </property>
@@ -284,7 +284,7 @@
     <rect>
      <x>10</x>
      <y>220</y>
-     <width>70</width>
+     <width>131</width>
      <height>16</height>
     </rect>
    </property>
@@ -297,7 +297,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>51</width>
+     <width>71</width>
      <height>16</height>
     </rect>
    </property>
@@ -308,9 +308,9 @@
   <widget class="QLabel" name="output_id">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>90</x>
      <y>10</y>
-     <width>51</width>
+     <width>201</width>
      <height>16</height>
     </rect>
    </property>
@@ -345,6 +345,21 @@
   <zorder>output_id</zorder>
   <zorder>output_name</zorder>
  </widget>
+ <tabstops>
+  <tabstop>output_name</tabstop>
+  <tabstop>output_city</tabstop>
+  <tabstop>output_street</tabstop>
+  <tabstop>output_number</tabstop>
+  <tabstop>output_postalCode</tabstop>
+  <tabstop>output_email</tabstop>
+  <tabstop>output_NIP</tabstop>
+  <tabstop>output_REGON</tabstop>
+  <tabstop>output_KRS</tabstop>
+  <tabstop>output_PESEL</tabstop>
+  <tabstop>output_phone</tabstop>
+  <tabstop>button_update</tabstop>
+  <tabstop>button_return</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

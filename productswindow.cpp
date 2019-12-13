@@ -19,7 +19,7 @@ productsWindow::~productsWindow()
 void productsWindow::updateProductList(){
     sql conn;
     QSqlQueryModel *modal = new QSqlQueryModel;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select * from produkty");
@@ -37,31 +37,6 @@ void productsWindow::updateProductList(){
     }
 
     conn.dbClose();
-}
-
-void productsWindow::on_button_addNew_clicked()
-{
-    QString name = ui->input_name->text();
-    QString unit = ui->input_unit->text();
-    double price = ui->input_price->text().toDouble();
-    int tax = ui->input_tax->text().toInt();
-
-    //qDebug() << "Name: " << name << " Unit: " << unit << " Price: " << price << " Tax: " << tax; //ok
-
-    sql conn;
-    conn.dbOpen();
-    QSqlQuery *query = new QSqlQuery(conn.db);
-
-    query->prepare("insert into produkty (nazwa, jednostka, cena, vat) VALUES (:nazwa, :jednostka, :cena, :vat);");
-    query->bindValue(":nazwa", name);
-    query->bindValue(":jednostka", unit);
-    query->bindValue(":cena", price);
-    query->bindValue(":vat", tax);
-    query->exec();
-    //qDebug() << query;
-    conn.dbClose();
-
-    updateProductList();
 }
 
 void productsWindow::on_button_editSelected_clicked()
@@ -92,7 +67,7 @@ void productsWindow::on_button_removeSelected_clicked()
         if (reply == QMessageBox::Yes) {
             int id = ui->combo_select->currentText().toInt();
             sql conn;
-            conn.dbOpen();
+            conn.dbOpen(conn.location);
             QSqlQuery *query = new QSqlQuery(conn.db);
             query->prepare("delete from produkty where id=:id");
             query->bindValue(":id",id);

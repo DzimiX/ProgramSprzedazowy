@@ -89,6 +89,12 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>comboBox</tabstop>
+  <tabstop>button_contiune</tabstop>
+  <tabstop>button_return</tabstop>
+  <tabstop>button_quickSell</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -21,7 +21,7 @@ void addProducts::on_button_add_clicked()
     int tax = ui->input_tax->text().toInt();
 
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("insert into produkty (nazwa, jednostka, cena, vat) values (:nazwa, :jednostka, :cena, :vat)");
@@ -30,6 +30,17 @@ void addProducts::on_button_add_clicked()
     query->bindValue(":jednostka", unit);
     query->bindValue(":cena", price);
     query->bindValue(":vat", tax);
+    query->exec();
+
+    //return last id
+    query->prepare("SELECT id FROM produkty ORDER BY id DESC LIMIT 1");
+    query->exec();
+    query->seek(0);
+    int id_produkt = query->value(0).toInt();
+
+    //add init delivery with amount of 0 to make storage amount work properly
+    query->prepare("INSERT INTO rozliczenia ( id_produkt, id_faktura, ilosc ) VALUES ( :id_produkt, 1, 0 )");
+    query->bindValue(":id_produkt", id_produkt);
     query->exec();
     conn.dbClose();
 

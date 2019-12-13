@@ -132,6 +132,14 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>input_name</tabstop>
+  <tabstop>input_unit</tabstop>
+  <tabstop>input_price</tabstop>
+  <tabstop>input_tax</tabstop>
+  <tabstop>button_add</tabstop>
+  <tabstop>button_return</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

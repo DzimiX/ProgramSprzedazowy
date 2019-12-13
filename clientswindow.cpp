@@ -19,7 +19,7 @@ clientsWindow::~clientsWindow()
 void clientsWindow::updateClientsList(){
     sql conn;
     QSqlQueryModel *modal = new QSqlQueryModel;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select * from kontrahenci");
@@ -75,7 +75,7 @@ void clientsWindow::on_button_removeSelected_clicked()
         if (reply == QMessageBox::Yes) {
             int id = ui->combo_select->currentText().toInt();
             sql conn;
-            conn.dbOpen();
+            conn.dbOpen(conn.location);
             QSqlQuery *query = new QSqlQuery(conn.db);
             query->prepare("delete from kontrahenci where id=:id");
             query->bindValue(":id",id);
@@ -93,7 +93,7 @@ void clientsWindow::on_button_return_clicked()
     clientsWindow::close();
 }
 
-void clientsWindow::on_tableView_clicked(const QModelIndex &index)
+void clientsWindow::on_tableView_clicked()
 {
     QItemSelectionModel *select = ui->tableView->selectionModel();
     QString value = select->selectedRows(0).value(0).data().toString();

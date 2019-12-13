@@ -53,7 +53,7 @@ void mainWindow::on_pushButton_5_clicked()
 
 void mainWindow::updateStaticText(){
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select * from firma");

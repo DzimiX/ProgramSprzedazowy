@@ -8,7 +8,7 @@ companyWindow::companyWindow(QWidget *parent) :
     ui->setupUi(this);
 
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("select * from firma;");
@@ -52,7 +52,7 @@ void companyWindow::on_pushButton_2_clicked()
     QString adres_kodPocztowy = ui->output_postalCode->text();
 
     sql conn;
-    conn.dbOpen();
+    conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("UPDATE firma SET nazwa=:nazwa,NIP=:NIP,REGON=:REGON,KRS=:KRS,PESEL=:PESEL,email=:email,telefon=:telefon,adres_miasto=:adres_miasto,adres_ulica=:adres_ulica,adres_numer=:adres_numer,adres_kodPocztowy=:adres_kodPocztowy WHERE 1=1;");

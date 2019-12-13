@@ -9,10 +9,12 @@
 class sql
 {
 public:
+    QString location = "C:/db/test.db";
     QSqlDatabase db;
-    bool dbOpen(void);
+    bool dbOpen(QString location);
     void dbClose(void);
     void dbCreate(QString location);
+    bool dbExists(QString location);
 };
 
 #endif // SQL_H

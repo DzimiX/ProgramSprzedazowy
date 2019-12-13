@@ -58,12 +58,15 @@
     <rect>
      <x>160</x>
      <y>190</y>
-     <width>33</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>PESEL:</string>
+   </property>
+   <property name="buddy">
+    <cstring>output_PESEL</cstring>
    </property>
   </widget>
   <widget class="QLabel" name="label_9">
@@ -71,12 +74,15 @@
     <rect>
      <x>160</x>
      <y>145</y>
-     <width>23</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>KRS:</string>
+   </property>
+   <property name="buddy">
+    <cstring>output_KRS</cstring>
    </property>
   </widget>
   <widget class="QLineEdit" name="output_name">
@@ -114,12 +120,15 @@
     <rect>
      <x>10</x>
      <y>145</y>
-     <width>34</width>
+     <width>91</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>numer:</string>
+   </property>
+   <property name="buddy">
+    <cstring>output_number</cstring>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -127,12 +136,15 @@
     <rect>
      <x>10</x>
      <y>100</y>
-     <width>25</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>ulica:</string>
+   </property>
+   <property name="buddy">
+    <cstring>output_street</cstring>
    </property>
   </widget>
   <widget class="QLabel" name="label_11">
@@ -140,12 +152,15 @@
     <rect>
      <x>159</x>
      <y>234</y>
-     <width>38</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>telefon:</string>
+   </property>
+   <property name="buddy">
+    <cstring>output_phone</cstring>
    </property>
   </widget>
   <widget class="QPushButton" name="button_return">
@@ -166,12 +181,15 @@
     <rect>
      <x>9</x>
      <y>234</y>
-     <width>28</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>email:</string>
+   </property>
+   <property name="buddy">
+    <cstring>output_email</cstring>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -179,12 +197,15 @@
     <rect>
      <x>160</x>
      <y>100</y>
-     <width>39</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>REGON:</string>
+   </property>
+   <property name="buddy">
+    <cstring>output_REGON</cstring>
    </property>
   </widget>
   <widget class="QLineEdit" name="output_postalCode">
@@ -222,12 +243,15 @@
     <rect>
      <x>10</x>
      <y>55</y>
-     <width>35</width>
+     <width>111</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>miasto:</string>
+   </property>
+   <property name="buddy">
+    <cstring>output_city</cstring>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -235,12 +259,15 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>111</width>
+     <width>181</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>nazwa firmy (klienta):</string>
+   </property>
+   <property name="buddy">
+    <cstring>output_name</cstring>
    </property>
   </widget>
   <widget class="QPushButton" name="button_add">
@@ -261,12 +288,15 @@
     <rect>
      <x>10</x>
      <y>190</y>
-     <width>70</width>
+     <width>121</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>kod pocztowy:</string>
+   </property>
+   <property name="buddy">
+    <cstring>output_postalCode</cstring>
    </property>
   </widget>
   <widget class="QLineEdit" name="output_street">
@@ -284,15 +314,33 @@
     <rect>
      <x>160</x>
      <y>55</y>
-     <width>21</width>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>NIP:</string>
    </property>
+   <property name="buddy">
+    <cstring>output_NIP</cstring>
+   </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>output_name</tabstop>
+  <tabstop>output_city</tabstop>
+  <tabstop>output_street</tabstop>
+  <tabstop>output_number</tabstop>
+  <tabstop>output_postalCode</tabstop>
+  <tabstop>output_email</tabstop>
+  <tabstop>output_NIP</tabstop>
+  <tabstop>output_REGON</tabstop>
+  <tabstop>output_KRS</tabstop>
+  <tabstop>output_PESEL</tabstop>
+  <tabstop>output_phone</tabstop>
+  <tabstop>button_add</tabstop>
+  <tabstop>button_return</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -2,6 +2,7 @@
 #define SALESAPPENDITEM_H
 
 #include <QDialog>
+#include <QMessageBox>
 #include "sql.h"
 
 namespace Ui {
@@ -22,6 +23,7 @@ public:
 public:
     void fillComboBox();
     void refreshStaticText();
+    int productAmount(int id);
 
 private slots:
     void on_comboBox_activated();
