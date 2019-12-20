@@ -25,6 +25,8 @@ private slots:
 
     void on_button_cancel_clicked();
 
+    void on_button_print_clicked();
+
 private:
     Ui::salesDetail *ui;
 };

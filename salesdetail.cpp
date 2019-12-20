@@ -75,3 +75,8 @@ void salesDetail::on_button_cancel_clicked()
         salesDetail::close();
     }
 }
+
+void salesDetail::on_button_print_clicked()
+{
+
+}

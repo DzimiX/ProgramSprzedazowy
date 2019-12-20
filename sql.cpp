@@ -106,6 +106,7 @@ void sql::dbCreate(QString location){
             "INSERT INTO kontrahenci (id, nazwa)"
             "VALUES (2,'PARAGON')"
         );
+        query->exec();
         query->prepare(
             "INSERT INTO faktury (id, id_kontrahent, komentarz)"
             "VALUES (1,1,'Dostawa')"
