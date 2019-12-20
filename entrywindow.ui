@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Program Sprzedażowy&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;v 19.11.28&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Maciej Dzimira 249569&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Program Sprzedażowy&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;v 19.12.13&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Maciej Dzimira 249569&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
   </widget>
@@ -47,7 +47,7 @@
      <x>0</x>
      <y>0</y>
      <width>300</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
