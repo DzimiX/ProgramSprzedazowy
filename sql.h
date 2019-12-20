@@ -5,6 +5,10 @@
 #include <QFileInfo>
 #include <QtDebug>
 #include <QString>
+#include <QPrinter>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QDate>
 
 class sql
 {
@@ -15,6 +19,7 @@ public:
     void dbClose(void);
     void dbCreate(QString location);
     bool dbExists(QString location);
+    void printInvoice(int invoiceId);
 };
 
 #endif // SQL_H

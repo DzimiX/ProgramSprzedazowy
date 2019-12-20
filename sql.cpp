@@ -115,3 +115,62 @@ void sql::dbCreate(QString location){
     }
 }
 
+void sql::printInvoice(int invoiceId){
+    QPdfWriter writer("C:/db/test.pdf");
+    writer.setPageSize(QPagedPaintDevice::A4);
+    writer.setPageMargins(QMargins(30, 30, 30, 30));
+
+    QPainter painter(&writer);
+    painter.setPen(Qt::black);
+    painter.setFont(QFont("Times", 12));
+
+    QRect r = painter.viewport();
+
+    sql conn;
+    conn.dbOpen(conn.location);
+    QSqlQuery *query = new QSqlQuery(conn.db);
+    query->prepare("SELECT * FROM firma");
+    query->exec();
+    query->seek(-1);
+    query->next();
+
+    QString nazwaFirmy = query->value(0).toString();
+    QString nip = query->value(1).toString();
+    QString email = query->value(5).toString();
+    QString telefon = query->value(6).toString();
+    QString adres_miasto = query->value(7).toString();
+    QString adres_ulica = query->value(8).toString();
+    QString adres_numer = query->value(9).toString();
+    QString adres_kodPocztowy = query->value(10).toString();
+
+    QString prawyGorny = "";
+    if(adres_miasto != ""){ prawyGorny += adres_miasto+", "; }
+    prawyGorny += QDate::currentDate().toString();
+
+    QString lewyGorny = "";
+    lewyGorny += "\n\n\nSprzedawca:\n";
+    if(nazwaFirmy != ""){ lewyGorny += nazwaFirmy+"\n"; }
+    if(nip != "0"){ lewyGorny += "NIP: "+nip+"\n"; }
+    if(email != ""){ lewyGorny += "Email: "+email+"\n"; }
+    if(telefon != ""){ lewyGorny += "Tel: "+telefon+"\n"; }
+    if(adres_kodPocztowy != ""){ lewyGorny += adres_kodPocztowy+" "; }
+    if(adres_miasto != ""){ lewyGorny += adres_miasto; }
+    lewyGorny += "\n";
+    if(adres_ulica != ""){ lewyGorny += adres_ulica+" "; }
+    if(adres_numer != ""){ lewyGorny += adres_numer; }
+    lewyGorny += "\n";
+
+    query->prepare("SELECT nazwa FROM kontrahenci,faktury WHERE faktury.id_kontrahent=kontrahenci.id AND faktury.id=:id");
+    query->bindValue(":id",invoiceId);
+    query->exec();
+    query->seek(-1);
+    query->next();
+
+    QString nazwa = query->value(0).toString();
+    prawyGorny += "\n\n\nOdbiorca:\n";
+    if(nazwa != ""){ prawyGorny+=nazwa;}
+
+    painter.drawText(r, Qt::AlignLeft, lewyGorny);
+    painter.drawText(r, Qt::AlignRight, prawyGorny);
+    painter.end();
+}

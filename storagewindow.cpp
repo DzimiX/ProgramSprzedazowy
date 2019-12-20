@@ -24,7 +24,7 @@ void storageWindow::updateDetails(){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("SELECT id_produkt as ID, Nazwa, sum(ilosc) from "
+    query->prepare("SELECT id_produkt as ID, Nazwa, sum(ilosc) as 'Suma produktów' from "
                    "("
                    "SELECT rozliczenia.id_produkt, produkty.nazwa as Nazwa, sum(rozliczenia.ilosc) as ilosc from produkty,rozliczenia,faktury where rozliczenia.id_produkt=produkty.id and rozliczenia.id_faktura=faktury.id and faktury.id_kontrahent==1 group by rozliczenia.id_produkt "
                    "UNION ALL "

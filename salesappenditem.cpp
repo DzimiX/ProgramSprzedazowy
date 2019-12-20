@@ -84,7 +84,6 @@ void salesAppendItem::on_button_add_clicked()
     query->seek(-1);
     query->next();
     int customerId = query->value(0).toInt();
-    qDebug() << customerId;
 
     if(amount <= 0 && customerId != 1 ){ //gdy customerId = 1 to dostawa i nie ma znaczeina ile mamy produktu!
         QMessageBox::critical(this,

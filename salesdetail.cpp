@@ -78,5 +78,8 @@ void salesDetail::on_button_cancel_clicked()
 
 void salesDetail::on_button_print_clicked()
 {
+    int id = ui->output_invoiceId->text().toInt();
 
+    sql pdf;
+    pdf.printInvoice(id);
 }
