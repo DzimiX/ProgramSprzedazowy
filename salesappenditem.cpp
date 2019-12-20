@@ -77,12 +77,21 @@ void salesAppendItem::on_button_add_clicked()
     int amount = ui->input_amount->text().toInt();
     int amount_max = ui->output_available->text().toInt();
 
-    if(amount <= 0 ){
+    //pobranie id do rozliczenia - czy dostawa? wtedy warunki nie obowiązują!
+    query->prepare("SELECT kontrahenci.id FROM kontrahenci, faktury WHERE faktury.id_kontrahent=kontrahenci.id AND faktury.id=:id_faktura");
+    query->bindValue(":id_faktura", invoiceId);
+    query->exec();
+    query->seek(-1);
+    query->next();
+    int customerId = query->value(0).toInt();
+    qDebug() << customerId;
+
+    if(amount <= 0 && customerId != 1 ){ //gdy customerId = 1 to dostawa i nie ma znaczeina ile mamy produktu!
         QMessageBox::critical(this,
                              "Błąd!",
                              "Niepoprawna wartość!",
                              QMessageBox::Ok);
-    }else if (amount > amount_max){
+    }else if (amount > amount_max && customerId != 1 ){
         QMessageBox::warning(this,
                              "Ostrzeżenie!",
                              "Nie posiadasz takiej ilości towaru w magazynie!",
