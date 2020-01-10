@@ -8,7 +8,7 @@ mainWindow::mainWindow() :
     this->setAttribute(Qt::WA_DeleteOnClose);
     updateStaticText();
     sql test;
-    test.printInvoice(1);
+    test.printInvoice(70);
 }
 
 mainWindow::~mainWindow()
@@ -19,9 +19,10 @@ mainWindow::~mainWindow()
 
 void mainWindow::on_pushButton_clicked()
 {
-    salesWindow salesWindow;
-    salesWindow.setModal(true);
-    salesWindow.exec();
+    salesWindow* salesWindow = new class salesWindow;
+    salesWindow->setModal(true);
+    salesWindow->exec();
+    delete salesWindow;
 }
 
 void mainWindow::on_pushButton_2_clicked()

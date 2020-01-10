@@ -8,7 +8,10 @@
 #include <QPrinter>
 #include <QPdfWriter>
 #include <QPainter>
+#include <QTextDocument>
+#include <QTextTable>
 #include <QDate>
+#include <QDateTime>
 
 class sql
 {

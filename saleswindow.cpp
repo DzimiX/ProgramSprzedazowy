@@ -19,7 +19,8 @@ void salesWindow::on_button_return_clicked()
     salesWindow::close();
 }
 
-void salesWindow::fillComboBox(){
+void salesWindow::fillComboBox()
+{
     sql conn;
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
