@@ -1,7 +1,7 @@
 #ifndef SUPPLIESWINDOW_H
 #define SUPPLIESWINDOW_H
 
-#include <QDialog>
+
 #include "sql.h"
 #include "salescreate.h"
 #include "salesdetail.h"

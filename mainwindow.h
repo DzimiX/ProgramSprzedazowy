@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QWidget>
+
 #include "saleswindow.h"
 #include "supplieswindow.h"
 #include "clientswindow.h"

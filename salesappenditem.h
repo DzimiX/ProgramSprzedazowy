@@ -1,8 +1,8 @@
 #ifndef SALESAPPENDITEM_H
 #define SALESAPPENDITEM_H
 
-#include <QDialog>
 #include <QMessageBox>
+
 #include "sql.h"
 
 namespace Ui {

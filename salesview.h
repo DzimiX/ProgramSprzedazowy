@@ -1,7 +1,6 @@
 #ifndef SALESVIEW_H
 #define SALESVIEW_H
 
-#include <QDialog>
 #include "sql.h"
 #include "salesdetail.h"
 

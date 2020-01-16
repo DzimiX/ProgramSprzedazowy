@@ -1,7 +1,6 @@
 #ifndef SALESWINDOW_H
 #define SALESWINDOW_H
 
-#include <QDialog>
 #include "sql.h"
 #include "salescreate.h"
 

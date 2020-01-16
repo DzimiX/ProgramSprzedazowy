@@ -18,6 +18,10 @@ bool sql::dbExists(QString location){
     if(QFileInfo::exists(location)){
         return true;
     }else{
+        QDir dir(qApp->applicationDirPath()+"/db");
+        if (!dir.exists()){
+          dir.mkdir(".");
+        }
         return false;
     }
 }
@@ -116,9 +120,13 @@ void sql::dbCreate(QString location){
 }
 
 void sql::dbCreatePdf(int invoiceId){
+    QDir dir(qApp->applicationDirPath()+"/faktury");
+    if (!dir.exists()){
+      dir.mkdir(".");
+    }
     QString fileName = QFileDialog::getSaveFileName(nullptr,
                                                     "Zapisz fakturę",
-                                                    QDir::homePath()+"/documents/faktura_"+QString::number(invoiceId),
+                                                    qApp->applicationDirPath()+"/faktury/faktura_"+QString::number(invoiceId),
                                                     "Plik PDF (*.pdf)");
     QPrinter printer(QPrinter::PrinterResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
@@ -181,7 +189,8 @@ void sql::dbCreatePdf(int invoiceId){
 
     query->prepare("SELECT ROW_NUMBER () OVER ( ORDER BY rozliczenia.id ) RowNum, "
                    "produkty.nazwa AS Nazwa,round(produkty.cena,2), "
-                   "round(produkty.VAT,2),rozliczenia.ilosc, "
+                   "round(produkty.VAT,2), "
+                   "rozliczenia.ilosc, "
                    "round((produkty.cena * rozliczenia.ilosc),2), "
                    "round((produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc),2), "
                    "round((produkty.cena * rozliczenia.ilosc + produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc),2) "

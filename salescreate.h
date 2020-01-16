@@ -1,12 +1,6 @@
 #ifndef SALESCREATE_H
 #define SALESCREATE_H
 
-#include <QDialog>
-#include <QDebug>
-#include <QtSql>
-#include <QDateTime>
-#include <QObject>
-#include <QMessageBox>
 #include "sql.h"
 #include "salesappenditem.h"
 

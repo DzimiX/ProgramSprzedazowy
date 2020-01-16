@@ -1,8 +1,6 @@
 #ifndef COMPANYWINDOW_H
 #define COMPANYWINDOW_H
 
-#include <QDialog>
-#include <QtSql>
 #include "sql.h"
 
 namespace Ui {

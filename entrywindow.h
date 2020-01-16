@@ -1,7 +1,6 @@
 #ifndef ENTRYWINDOW_H
 #define ENTRYWINDOW_H
 
-#include <QMainWindow>
 #include "mainwindow.h"
 
 QT_BEGIN_NAMESPACE
