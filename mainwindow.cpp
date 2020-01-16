@@ -7,8 +7,6 @@ mainWindow::mainWindow() :
     ui->setupUi(this);
     this->setAttribute(Qt::WA_DeleteOnClose);
     updateStaticText();
-    sql test;
-    test.printInvoice(70);
 }
 
 mainWindow::~mainWindow()

@@ -52,7 +52,7 @@ void salesView::updateComboBox(){
     }
 }
 
-void salesView::on_tableView_clicked(const QModelIndex &index)
+void salesView::on_tableView_clicked()
 {
     QItemSelectionModel *select = ui->tableView->selectionModel();
     QString value = select->selectedRows(0).value(0).data().toString();

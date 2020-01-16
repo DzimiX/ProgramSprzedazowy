@@ -178,3 +178,10 @@ void salesCreate::on_button_removeElement_clicked()
     query->exec();
     updateDetails();
 }
+
+void salesCreate::on_button_print_clicked()
+{
+    int id = ui->output_id->text().toInt();
+    sql pdf;
+    pdf.dbCreatePdf(id);
+}

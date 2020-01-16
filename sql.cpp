@@ -115,11 +115,15 @@ void sql::dbCreate(QString location){
     }
 }
 
-void sql::printInvoice(int invoiceId){
+void sql::dbCreatePdf(int invoiceId){
+    QString fileName = QFileDialog::getSaveFileName(nullptr,
+                                                    "Zapisz fakturę",
+                                                    QDir::homePath()+"/documents/faktura_"+QString::number(invoiceId),
+                                                    "Plik PDF (*.pdf)");
     QPrinter printer(QPrinter::PrinterResolution);
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setPaperSize(QPrinter::A4);
-    printer.setOutputFileName("faktura.pdf");
+    printer.setOutputFileName(fileName);
 
     sql conn;
     conn.dbOpen(conn.location);
@@ -175,7 +179,13 @@ void sql::printInvoice(int invoiceId){
     QString suma_vat = query->value(1).toString();
     QString suma_brutto = query->value(2).toString();
 
-    query->prepare("select ROW_NUMBER () OVER ( ORDER BY rozliczenia.id ) RowNum, produkty.nazwa as Nazwa,round(produkty.cena,2), round(produkty.VAT,2),rozliczenia.ilosc, round((produkty.cena * rozliczenia.ilosc),2), round((produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc),2), round((produkty.cena * rozliczenia.ilosc + produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc),2) from rozliczenia,produkty where rozliczenia.id_faktura=:ID and rozliczenia.id_produkt=produkty.id");
+    query->prepare("SELECT ROW_NUMBER () OVER ( ORDER BY rozliczenia.id ) RowNum, "
+                   "produkty.nazwa AS Nazwa,round(produkty.cena,2), "
+                   "round(produkty.VAT,2),rozliczenia.ilosc, "
+                   "round((produkty.cena * rozliczenia.ilosc),2), "
+                   "round((produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc),2), "
+                   "round((produkty.cena * rozliczenia.ilosc + produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc),2) "
+                   "FROM rozliczenia,produkty WHERE rozliczenia.id_faktura=:ID AND rozliczenia.id_produkt=produkty.id");
     query->bindValue(":ID", invoiceId);
     query->exec();
     query->seek(-1);

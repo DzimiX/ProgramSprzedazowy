@@ -26,7 +26,7 @@ public:
 private slots:
     void on_button_return_clicked();
     void on_newSupply_clicked();
-    void on_tableView_clicked(const QModelIndex &index);
+    void on_tableView_clicked();
     void on_editSupply_clicked();
 };
 

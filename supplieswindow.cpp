@@ -73,7 +73,7 @@ void suppliesWindow::on_newSupply_clicked()
     updateDetails();
 }
 
-void suppliesWindow::on_tableView_clicked(const QModelIndex &index) //links tableView id selected with combobox value
+void suppliesWindow::on_tableView_clicked()
 {
     QItemSelectionModel *select = ui->tableView->selectionModel();
     QString value = select->selectedRows(0).value(0).data().toString();

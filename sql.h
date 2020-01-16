@@ -12,6 +12,7 @@
 #include <QTextTable>
 #include <QDate>
 #include <QDateTime>
+#include <QFileDialog>
 
 class sql
 {
@@ -22,7 +23,7 @@ public:
     void dbClose(void);
     void dbCreate(QString location);
     bool dbExists(QString location);
-    void printInvoice(int invoiceId);
+    void dbCreatePdf(int invoiceId);
 };
 
 #endif // SQL_H

@@ -34,6 +34,8 @@ private slots:
     void on_tableView_clicked();
     void on_button_removeElement_clicked();
 
+    void on_button_print_clicked();
+
 private:
     Ui::salesCreate *ui;
 };
