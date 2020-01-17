@@ -55,7 +55,8 @@ void sql::dbCreate(QString location){
                 "adres_miasto       TEXT,"
                 "adres_ulica        TEXT,"
                 "adres_numer        TEXT,"
-                "adres_kodPocztowy  TEXT"
+                "adres_kodPocztowy  TEXT,"
+                "motyw              TEXT"
             ");"
         );
         query->exec();
@@ -97,8 +98,8 @@ void sql::dbCreate(QString location){
         query->exec();
         //fill db with essential data
         query->prepare(
-            "INSERT INTO firma (nazwa)"
-            "VALUES ('Uzupełnij dane firmy!')"
+            "INSERT INTO firma (nazwa,motyw)"
+            "VALUES ('Uzupełnij dane firmy!','Jasny')"
         );
         query->exec();
         query->prepare(
