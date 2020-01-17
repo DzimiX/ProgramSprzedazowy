@@ -6,360 +6,210 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>303</width>
-    <height>355</height>
+    <width>300</width>
+    <height>393</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Edycja danych kontrahenta</string>
   </property>
-  <widget class="QLineEdit" name="output_postalCode">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>239</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>130</y>
-     <width>131</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>REGON:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="output_REGON">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>149</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="output_street">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>149</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="output_phone">
-   <property name="geometry">
-    <rect>
-     <x>159</x>
-     <y>283</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_10">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>264</y>
-     <width>131</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>email:</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_update">
-   <property name="geometry">
-    <rect>
-     <x>133</x>
-     <y>320</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Edytuj</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="output_number">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>194</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="output_name">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>58</y>
-     <width>284</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>85</y>
-     <width>81</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>miasto:</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_return">
-   <property name="geometry">
-    <rect>
-     <x>216</x>
-     <y>320</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Wróć</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>175</y>
-     <width>131</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>KRS:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>40</y>
-     <width>271</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>nazwa firmy (klienta):</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="output_city">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>104</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>85</y>
-     <width>121</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>NIP:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_11">
-   <property name="geometry">
-    <rect>
-     <x>159</x>
-     <y>264</y>
-     <width>131</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>telefon:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="output_KRS">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>194</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="output_email">
-   <property name="geometry">
-    <rect>
-     <x>9</x>
-     <y>283</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>130</y>
-     <width>91</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>ulica:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="output_NIP">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>104</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>175</y>
-     <width>111</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>numer:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>220</y>
-     <width>131</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PESEL:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="output_PESEL">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>239</y>
-     <width>133</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>220</y>
-     <width>131</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>kod pocztowy:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_12">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>71</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>ID klienta:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="output_id">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>10</y>
-     <width>201</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>ID</string>
-   </property>
-  </widget>
-  <zorder>output_postalCode</zorder>
-  <zorder>label_8</zorder>
-  <zorder>output_REGON</zorder>
-  <zorder>output_street</zorder>
-  <zorder>output_phone</zorder>
-  <zorder>label_10</zorder>
-  <zorder>button_update</zorder>
-  <zorder>output_number</zorder>
-  <zorder>label_2</zorder>
-  <zorder>button_return</zorder>
-  <zorder>label_9</zorder>
-  <zorder>label</zorder>
-  <zorder>output_city</zorder>
-  <zorder>label_4</zorder>
-  <zorder>label_11</zorder>
-  <zorder>output_KRS</zorder>
-  <zorder>output_email</zorder>
-  <zorder>label_3</zorder>
-  <zorder>output_NIP</zorder>
-  <zorder>label_5</zorder>
-  <zorder>label_7</zorder>
-  <zorder>output_PESEL</zorder>
-  <zorder>label_6</zorder>
-  <zorder>label_12</zorder>
-  <zorder>output_id</zorder>
-  <zorder>output_name</zorder>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="17" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>numer:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>KRS:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_15">
+     <item>
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>ID klienta:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="output_id">
+       <property name="text">
+        <string>ID</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="30" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="button_update">
+       <property name="text">
+        <string>Edytuj</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_return">
+       <property name="text">
+        <string>Wróć</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="26" column="0" colspan="3">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>email:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>telefon:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="24" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLineEdit" name="output_postalCode"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="output_PESEL"/>
+     </item>
+    </layout>
+   </item>
+   <item row="11" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_10">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>ulica:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>REGON:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_14">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>nazwa firmy (klienta):</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="13" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <item>
+      <widget class="QLineEdit" name="output_street"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="output_REGON"/>
+     </item>
+    </layout>
+   </item>
+   <item row="7" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_12">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>miasto:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>NIP:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="20" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <widget class="QLineEdit" name="output_number"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="output_KRS"/>
+     </item>
+    </layout>
+   </item>
+   <item row="22" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>kod pocztowy:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>PESEL:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="29" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLineEdit" name="output_email"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="output_phone"/>
+     </item>
+    </layout>
+   </item>
+   <item row="8" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_11">
+     <item>
+      <widget class="QLineEdit" name="output_city"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="output_NIP"/>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_13">
+     <item>
+      <widget class="QLineEdit" name="output_name"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
- <tabstops>
-  <tabstop>output_name</tabstop>
-  <tabstop>output_city</tabstop>
-  <tabstop>output_street</tabstop>
-  <tabstop>output_number</tabstop>
-  <tabstop>output_postalCode</tabstop>
-  <tabstop>output_email</tabstop>
-  <tabstop>output_NIP</tabstop>
-  <tabstop>output_REGON</tabstop>
-  <tabstop>output_KRS</tabstop>
-  <tabstop>output_PESEL</tabstop>
-  <tabstop>output_phone</tabstop>
-  <tabstop>button_update</tabstop>
-  <tabstop>button_return</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

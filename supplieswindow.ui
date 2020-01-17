@@ -13,84 +13,49 @@
   <property name="windowTitle">
    <string>Dostawa</string>
   </property>
-  <widget class="QTableView" name="tableView">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>40</y>
-     <width>591</width>
-     <height>321</height>
-    </rect>
-   </property>
-   <property name="selectionBehavior">
-    <enum>QAbstractItemView::SelectRows</enum>
-   </property>
-   <attribute name="verticalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QPushButton" name="button_return">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>380</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Wróć</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>10</y>
-     <width>591</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Ostatnie dostawy:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="newSupply">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>380</y>
-     <width>91</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Nowa dostawa</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="editSupply">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>380</y>
-     <width>111</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Szczegóły dostawy</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>380</y>
-     <width>41</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="4">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Ostatnie dostawy:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="4">
+    <widget class="QTableView" name="tableView">
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="newSupply">
+     <property name="text">
+      <string>Nowa dostawa</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QComboBox" name="comboBox"/>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="editSupply">
+     <property name="text">
+      <string>Szczegóły dostawy</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QPushButton" name="button_return">
+     <property name="text">
+      <string>Wróć</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

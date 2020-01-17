@@ -13,124 +13,83 @@
   <property name="windowTitle">
    <string>Kontrahenci</string>
   </property>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>370</y>
-     <width>71</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Wybierz ID:</string>
-   </property>
-  </widget>
-  <widget class="QTableView" name="tableView">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>980</width>
-     <height>341</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Sunken</enum>
-   </property>
-   <property name="lineWidth">
-    <number>2</number>
-   </property>
-   <property name="selectionMode">
-    <enum>QAbstractItemView::SingleSelection</enum>
-   </property>
-   <property name="selectionBehavior">
-    <enum>QAbstractItemView::SelectRows</enum>
-   </property>
-   <property name="textElideMode">
-    <enum>Qt::ElideMiddle</enum>
-   </property>
-   <attribute name="horizontalHeaderCascadingSectionResizes">
-    <bool>true</bool>
-   </attribute>
-   <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>125</number>
-   </attribute>
-   <attribute name="horizontalHeaderHighlightSections">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="horizontalHeaderStretchLastSection">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="verticalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QPushButton" name="button_return">
-   <property name="geometry">
-    <rect>
-     <x>910</x>
-     <y>369</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Wróć</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_newClient">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>369</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Nowy klient</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_removeSelected">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>369</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Usuń</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_editSelected">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>369</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Edytuj</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="combo_select">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>370</y>
-     <width>81</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="3">
+    <widget class="QPushButton" name="button_editSelected">
+     <property name="text">
+      <string>Edytuj</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QPushButton" name="button_removeSelected">
+     <property name="text">
+      <string>Usuń</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="6">
+    <widget class="QTableView" name="tableView">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <property name="lineWidth">
+      <number>2</number>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="textElideMode">
+      <enum>Qt::ElideMiddle</enum>
+     </property>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>125</number>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="1" column="5">
+    <widget class="QPushButton" name="button_return">
+     <property name="text">
+      <string>Wróć</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="button_newClient">
+     <property name="text">
+      <string>Nowy klient</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Wybierz ID:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QComboBox" name="combo_select"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

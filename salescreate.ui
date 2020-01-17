@@ -13,269 +13,154 @@
   <property name="windowTitle">
    <string>Tworzenie zamówienia</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>50</y>
-     <width>221</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Aktualnie w zamówieniu:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_print">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>525</x>
-     <y>500</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Generuj PDF</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_quit">
-   <property name="geometry">
-    <rect>
-     <x>440</x>
-     <y>500</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Zamknij</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>10</y>
-     <width>71</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Zamówienie id:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="output_id">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>10</y>
-     <width>501</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>[id zamówienia]</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>25</y>
-     <width>71</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Z dnia:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="output_date">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>25</y>
-     <width>501</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>[dzień zamówienia]</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>410</y>
-     <width>51</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Odbiorca:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="output_client">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>410</y>
-     <width>531</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>[nazwa kontrahenta]</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>430</y>
-     <width>121</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Kwota do zapłaty:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>470</y>
-     <width>121</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;VAT:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="output_gross">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>430</y>
-     <width>461</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>[kwota brutto]</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="output_tax">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>470</y>
-     <width>461</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>[kwota vat]</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="output_net">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>450</y>
-     <width>461</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>[kwota netto]</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_11">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>450</y>
-     <width>121</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NETTO:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_removeElement">
-   <property name="geometry">
-    <rect>
-     <x>495</x>
-     <y>50</y>
-     <width>110</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Usuń element</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button_addElement">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>50</y>
-     <width>131</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Dodaj nowy element</string>
-   </property>
-  </widget>
-  <widget class="QTableView" name="tableView">
-   <property name="geometry">
-    <rect>
-     <x>15</x>
-     <y>80</y>
-     <width>591</width>
-     <height>321</height>
-    </rect>
-   </property>
-   <property name="selectionBehavior">
-    <enum>QAbstractItemView::SelectRows</enum>
-   </property>
-   <attribute name="verticalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QPushButton" name="button_cancel">
-   <property name="geometry">
-    <rect>
-     <x>15</x>
-     <y>500</y>
-     <width>141</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>ANULUJ ZAMÓWIENIE</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>50</y>
-     <width>81</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Odbiorca:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1" colspan="7">
+    <widget class="QLabel" name="output_client">
+     <property name="text">
+      <string>[nazwa kontrahenta]</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2" colspan="6">
+    <widget class="QLabel" name="output_date">
+     <property name="text">
+      <string>[dzień zamówienia]</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="4">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Aktualnie w zamówieniu:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="8">
+    <widget class="QTableView" name="tableView">
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Z dnia:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="5">
+    <widget class="QComboBox" name="comboBox"/>
+   </item>
+   <item row="2" column="6" colspan="2">
+    <widget class="QPushButton" name="button_removeElement">
+     <property name="text">
+      <string>Usuń element</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2" colspan="6">
+    <widget class="QLabel" name="output_id">
+     <property name="text">
+      <string>[id zamówienia]</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Zamówienie id:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="3">
+    <widget class="QLabel" name="output_tax">
+     <property name="text">
+      <string>[kwota vat]</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QLabel" name="label_7">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;VAT:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QPushButton" name="button_addElement">
+     <property name="text">
+      <string>Dodaj nowy element</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0" colspan="8">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="button_cancel">
+       <property name="text">
+        <string>ANULUJ ZAMÓWIENIE</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_quit">
+       <property name="text">
+        <string>Zamknij</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_print">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Generuj PDF</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="6" column="2">
+    <widget class="QLabel" name="label_11">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;NETTO:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Kwota do zapłaty:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="3">
+    <widget class="QLabel" name="output_net">
+     <property name="text">
+      <string>[kwota netto]</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="3">
+    <widget class="QLabel" name="output_gross">
+     <property name="text">
+      <string>[kwota brutto]</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
