@@ -1,6 +1,7 @@
 #include "salescreate.h"
 #include "ui_salescreate.h"
 
+int salesCreate::invoiceId = -1;
 
 salesCreate::salesCreate(QWidget *parent) :
     QDialog(parent),
@@ -34,6 +35,21 @@ void salesCreate::createInvoice(QString clientName){
     query->next();
     int clientID = query->value(0).toInt();
 
+    if(clientID==1){
+        ui->label_2->setText("Dostawa nr: ");
+        ui->label->setText("<b>Aktualnie w dostawie:<b> ");
+        ui->label->setAlignment(Qt::AlignRight);
+        ui->label_2->setAlignment(Qt::AlignRight);
+        ui->label_3->hide();
+        ui->label_6->hide();
+        ui->label_7->hide();
+        ui->label_11->hide();
+        ui->output_net->hide();
+        ui->output_tax->hide();
+        ui->output_gross->hide();
+        ui->output_client->hide();
+    }
+
     query->prepare("INSERT INTO faktury (id_kontrahent, data) VALUES (:id_kontrahent, :data);");
     query->bindValue(":id_kontrahent",clientID);
     query->bindValue(":data",QDateTime::currentDateTime().toString( "yyyy-MM-dd hh:mm:ss" ));
@@ -43,7 +59,8 @@ void salesCreate::createInvoice(QString clientName){
     query->exec();
     query->seek(-1);
     query->next();
-    ui->output_id->setText(query->value(0).toString());
+    invoiceId = query->value(0).toInt();
+    ui->output_id->setText(QString::number(invoiceId));
 
     conn.dbClose();
     salesCreate::updateDetails();
@@ -139,8 +156,9 @@ void salesCreate::on_button_cancel_clicked()
 
 void salesCreate::on_button_addElement_clicked()
 {
+    salesAppendItem::invoiceId = invoiceId;
+    qDebug() << invoiceId;
     salesAppendItem salesAppendItem;
-    salesAppendItem.appendTo(ui->output_id->text().toInt());
     salesAppendItem.setModal(true);
     salesAppendItem.exec();
     updateDetails();

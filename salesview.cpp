@@ -78,8 +78,8 @@ void salesView::on_tableView_clicked()
 
 void salesView::on_button_details_clicked()
 {
+    salesDetail::invoiceId = ui->comboBox->currentText().toInt();
     salesDetail salesDetail;
-    salesDetail.updateDetails(ui->comboBox->currentText().toInt());
     salesDetail.setModal(true);
     salesDetail.exec();
     updateDisplay();

@@ -20,6 +20,7 @@ public:
     ~salesCreate();
     void updateDetails();
     void fillCombo();
+    int static invoiceId;
 
 private slots:
     void on_button_quit_clicked();

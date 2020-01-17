@@ -6,6 +6,8 @@ storageWindow::storageWindow(QWidget *parent) :
     ui(new Ui::storageWindow)
 {
     ui->setupUi(this);
+    ui->tableView->horizontalHeader()->setStretchLastSection(true);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     updateDetails();
 }
 

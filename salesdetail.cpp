@@ -1,6 +1,8 @@
 #include "salesdetail.h"
 #include "ui_salesdetail.h"
 
+int salesDetail::invoiceId = -1;
+
 salesDetail::salesDetail(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::salesDetail)
@@ -8,6 +10,7 @@ salesDetail::salesDetail(QWidget *parent) :
     ui->setupUi(this);
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    updateDetails();
 }
 
 salesDetail::~salesDetail()
@@ -15,12 +18,13 @@ salesDetail::~salesDetail()
     delete ui;
 }
 
-void salesDetail::updateDetails(int invoiceId){
+void salesDetail::updateDetails(){
     ui->output_invoiceId->setNum(invoiceId);
     sql conn;
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
     query->prepare("SELECT "
+                       "kontrahenci.id, "
                        "kontrahenci.nazwa, "
                        "faktury.data "
                    "FROM faktury,kontrahenci "
@@ -31,8 +35,9 @@ void salesDetail::updateDetails(int invoiceId){
     query->exec();
     query->seek(-1);
     query->next();
-    ui->output_clientName->setText(query->value(0).toString());
-    ui->output_date->setText(query->value(1).toString());
+    int clientId = query->value(0).toInt();
+    ui->output_clientName->setText(query->value(1).toString());
+    ui->output_date->setText(query->value(2).toString());
 
     query->prepare("SELECT "
                        "rozliczenia.id, "
@@ -55,18 +60,29 @@ void salesDetail::updateDetails(int invoiceId){
 
     conn.dbClose();
 
-    double net = 0;
-    double gross = 0;
-    double tax = 0;
+    if(clientId!=1){
+        double net = 0;
+        double gross = 0;
+        double tax = 0;
 
-    for (int row = 0; row < ui->tableView->model()->rowCount(); ++row) {
-        net += ui->tableView->model()->data(ui->tableView->model()->index(row,5)).toDouble();
-        tax += ui->tableView->model()->data(ui->tableView->model()->index(row,6)).toDouble();
-        gross += ui->tableView->model()->data(ui->tableView->model()->index(row,7)).toDouble();
+        for (int row = 0; row < ui->tableView->model()->rowCount(); ++row) {
+            net += ui->tableView->model()->data(ui->tableView->model()->index(row,5)).toDouble();
+            tax += ui->tableView->model()->data(ui->tableView->model()->index(row,6)).toDouble();
+            gross += ui->tableView->model()->data(ui->tableView->model()->index(row,7)).toDouble();
+        }
+        ui->output_net->setNum(net);
+        ui->output_gross->setNum(gross);
+        ui->output_tax->setNum(tax);
+    } else {
+        ui->output_net->hide();
+        ui->output_tax->hide();
+        ui->output_gross->hide();
+        ui->label_3->hide();
+        ui->label_5->hide();
+        ui->label_6->hide();
+        ui->label_7->hide();
+        ui->label->setText("Szczegóły dostawy o nr:");
     }
-    ui->output_net->setNum(net);
-    ui->output_gross->setNum(gross);
-    ui->output_tax->setNum(tax);
 }
 
 void salesDetail::on_button_return_clicked()

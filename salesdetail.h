@@ -14,9 +14,11 @@ class salesDetail : public QDialog
     Q_OBJECT
 
 public slots:
-    void updateDetails(int invoiceId);
+
+    void updateDetails();
 
 public:
+    static int invoiceId;
     explicit salesDetail(QWidget *parent = nullptr);
     ~salesDetail();
 
@@ -30,5 +32,7 @@ private slots:
 private:
     Ui::salesDetail *ui;
 };
+
+
 
 #endif // SALESDETAIL_H

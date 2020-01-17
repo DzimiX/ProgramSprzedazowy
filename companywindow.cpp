@@ -15,6 +15,7 @@ companyWindow::companyWindow(QWidget *parent) :
     query->exec();
     query->seek(0);
 
+    // load from db to interface
     ui->output_name->setText(query->value(0).toString());
     ui->output_NIP->setText(query->value(1).toString());
     ui->output_REGON->setText(query->value(2).toString());
@@ -37,6 +38,7 @@ companyWindow::~companyWindow()
 
 void companyWindow::on_pushButton_2_clicked()
 {
+    // write to db from interface
     QString name = ui->output_name->text();
     int NIP = ui->output_NIP->text().toInt();
     int REGON = ui->output_REGON->text().toInt();
