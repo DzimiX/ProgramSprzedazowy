@@ -12,11 +12,12 @@ class editProducts : public QDialog
     Q_OBJECT
 
 public slots:
-    void reciveProductId( int id );
+    void reciveProductId();
 
 public:
     explicit editProducts(QWidget *parent = nullptr);
     ~editProducts();
+    static int productId;
 
 private slots:
     void on_pushButton_clicked();

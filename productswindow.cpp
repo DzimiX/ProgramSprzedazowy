@@ -45,9 +45,9 @@ void productsWindow::on_button_editSelected_clicked()
     }else{
         int id = ui->combo_select->currentText().toInt();
 
+        editProducts::productId=id;
         editProducts editProducts;
         editProducts.setModal(true);
-        editProducts.reciveProductId(id);
         editProducts.exec();
         updateProductList();
     }

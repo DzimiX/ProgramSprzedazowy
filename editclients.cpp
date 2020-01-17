@@ -1,11 +1,14 @@
 #include "editclients.h"
 #include "ui_editclients.h"
 
+int editClients::clientId = -1;
+
 editClients::editClients(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::editClients)
 {
     ui->setupUi(this);
+    reciveClientId();
 }
 
 editClients::~editClients()
@@ -13,15 +16,15 @@ editClients::~editClients()
     delete ui;
 }
 
-void editClients::reciveClientId(int id){
-    ui->output_id->setNum(id);
+void editClients::reciveClientId(){
+    ui->output_id->setNum(clientId);
 
     sql conn;
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare("SELECT * FROM kontrahenci WHERE id=:id");
-    query->bindValue(":id",id);
+    query->bindValue(":id",clientId);
     query->exec();
 
     query->seek(-1);
@@ -44,17 +47,16 @@ void editClients::reciveClientId(int id){
 void editClients::on_button_update_clicked()
 {
     QString name = ui->output_name->text();
-    QVariant NIP = ui->output_NIP->text();
-    QVariant REGON = ui->output_REGON->text();
-    QVariant KRS = ui->output_KRS->text();
-    QVariant PESEL = ui->output_PESEL->text();
+    QString NIP = ui->output_NIP->text();
+    QString REGON = ui->output_REGON->text();
+    QString KRS = ui->output_KRS->text();
+    QString PESEL = ui->output_PESEL->text();
     QString email = ui->output_email->text();
     QString phone = ui->output_phone->text();
     QString city = ui->output_city->text();
     QString street = ui->output_street->text();
     QString number = ui->output_number->text();
     QString postalCode = ui->output_postalCode->text();
-    int id = ui->output_id->text().toInt();
 
     sql conn;
     conn.dbOpen(conn.location);
@@ -85,7 +87,7 @@ void editClients::on_button_update_clicked()
     query->bindValue(":adres_ulica", street);
     query->bindValue(":adres_numer", number);
     query->bindValue(":adres_kodPocztowy", postalCode);
-    query->bindValue(":id", id);
+    query->bindValue(":id", clientId);
 
     query->exec();
     conn.dbClose();

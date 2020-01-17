@@ -21,7 +21,7 @@ public:
 public:
     void fillComboBox();
     void updateDetails();
-    int productAmount(int id);
+    int productAmount(int productId);
 
 private slots:
     void on_comboBox_activated();

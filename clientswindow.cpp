@@ -53,9 +53,9 @@ void clientsWindow::on_button_editSelected_clicked()
     }else{
         int id = ui->combo_select->currentText().toInt();
 
+        editClients::clientId = id;
         editClients editClients;
         editClients.setModal(true);
-        editClients.reciveClientId(id);
         editClients.exec();
         updateClientsList();
     }

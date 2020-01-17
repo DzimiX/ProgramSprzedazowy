@@ -71,10 +71,10 @@ void salesAppendItem::updateDetails(){
     query->bindValue(":nazwa",ui->comboBox->currentText());
     query->exec();
     query->seek(0);
-    int id = query->value(0).toInt();
+    int productId = query->value(0).toInt();
     ui->output_unit->setText(query->value(2).toString());
     ui->output_price->setText(query->value(3).toString());
-    int ilosc = productAmount(id);
+    int ilosc = productAmount(productId);
     QString ilosc_text = QString::number(ilosc);
     ui->output_available->setText(ilosc_text);
     conn.dbClose();
@@ -129,7 +129,7 @@ void salesAppendItem::on_button_add_clicked()
     conn.dbClose();
 }
 
-int salesAppendItem::productAmount(int id){
+int salesAppendItem::productAmount(int productId){
     sql conn;
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
@@ -162,7 +162,7 @@ int salesAppendItem::productAmount(int id){
                    ") "
                    "WHERE ID=:id "
                    "GROUP BY id_produkt");
-    query->bindValue(":id",id);
+    query->bindValue(":id",productId);
     query->exec();
     query->seek(0);
     return query->value(2).toInt();

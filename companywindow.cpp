@@ -40,10 +40,10 @@ void companyWindow::on_pushButton_2_clicked()
 {
     // write to db from interface
     QString name = ui->output_name->text();
-    int NIP = ui->output_NIP->text().toInt();
-    int REGON = ui->output_REGON->text().toInt();
-    int KRS = ui->output_KRS->text().toInt();
-    int PESEL = ui->output_PESEL->text().toInt();
+    QString NIP = ui->output_NIP->text();
+    QString REGON = ui->output_REGON->text();
+    QString KRS = ui->output_KRS->text();
+    QString PESEL = ui->output_PESEL->text();
     QString email = ui->output_email->text();
     QString telefon = ui->output_phone->text();
     QString adres_miasto = ui->output_city->text();
