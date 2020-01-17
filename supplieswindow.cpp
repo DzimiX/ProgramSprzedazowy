@@ -97,9 +97,13 @@ void suppliesWindow::on_tableView_clicked()
 
 void suppliesWindow::on_editSupply_clicked()
 {
-    salesDetail::invoiceId = ui->comboBox->currentText().toInt();
-    salesDetail salesDetail;
-    salesDetail.setModal(true);
-    salesDetail.exec();
-    updateDetails();
+    if(ui->comboBox->currentText().toInt() != 0){
+        salesDetail::invoiceId = ui->comboBox->currentText().toInt();
+        salesDetail salesDetail;
+        salesDetail.setModal(true);
+        salesDetail.exec();
+        updateDetails();
+    }else{
+        //
+    }
 }
