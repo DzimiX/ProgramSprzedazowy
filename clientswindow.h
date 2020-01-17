@@ -1,11 +1,8 @@
 #ifndef CLIENTSWINDOW_H
 #define CLIENTSWINDOW_H
 
-#include <QDialog>
-#include <QSql>
-#include <QtDebug>
-#include <QObject>
 #include <QMessageBox>
+
 #include "sql.h"
 #include "addclients.h"
 #include "editclients.h"

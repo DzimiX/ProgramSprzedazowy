@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QWidget>
+
 #include "saleswindow.h"
 #include "supplieswindow.h"
 #include "clientswindow.h"
@@ -31,6 +31,8 @@ private slots:
     void on_pushButton_5_clicked();
     void on_pushButton_6_clicked();
     void on_pushButton_7_clicked();
+
+    void on_comboBox_activated();
 
 private:
     Ui::mainWindow *ui;

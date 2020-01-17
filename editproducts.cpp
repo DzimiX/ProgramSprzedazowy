@@ -25,7 +25,7 @@ void editProducts::reciveProductId(int id){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("select * from produkty where id=:id");
+    query->prepare("SELECT * FROM produkty WHERE id=:id");
     query->bindValue(":id",id);
     query->exec();
 
@@ -52,8 +52,14 @@ void editProducts::on_pushButton_clicked()
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("update produkty set nazwa=:nazwa, jednostka=:jednostka, cena=:cena, VAT=:vat where id=:id;");
-    //qDebug() << query;
+    query->prepare("UPDATE produkty "
+                   "SET "
+                       "nazwa=:nazwa, "
+                       "jednostka=:jednostka, "
+                       "cena=:cena, "
+                       "VAT=:vat "
+                   "WHERE id=:id;");
+
     query->bindValue(":nazwa", name);
     query->bindValue(":jednostka", unit);
     query->bindValue(":cena", price);

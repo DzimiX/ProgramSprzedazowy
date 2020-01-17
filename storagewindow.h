@@ -1,7 +1,6 @@
 #ifndef STORAGEWINDOW_H
 #define STORAGEWINDOW_H
 
-#include <QDialog>
 #include "sql.h"
 
 namespace Ui {

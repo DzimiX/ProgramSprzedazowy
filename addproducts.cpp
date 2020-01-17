@@ -24,8 +24,11 @@ void addProducts::on_button_add_clicked()
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("insert into produkty (nazwa, jednostka, cena, vat) values (:nazwa, :jednostka, :cena, :vat)");
-    //qDebug() << query;
+    query->prepare("INSERT INTO produkty "
+                   "(nazwa, jednostka, cena, vat) "
+                   "VALUES "
+                   "(:nazwa, :jednostka, :cena, :vat)");
+
     query->bindValue(":nazwa", name);
     query->bindValue(":jednostka", unit);
     query->bindValue(":cena", price);
@@ -39,7 +42,10 @@ void addProducts::on_button_add_clicked()
     int id_produkt = query->value(0).toInt();
 
     //add init delivery with amount of 0 to make storage amount work properly
-    query->prepare("INSERT INTO rozliczenia ( id_produkt, id_faktura, ilosc ) VALUES ( :id_produkt, 1, 0 )");
+    query->prepare("INSERT INTO rozliczenia "
+                   "( id_produkt, id_faktura, ilosc ) "
+                   "VALUES "
+                   "( :id_produkt, 1, 0 )");
     query->bindValue(":id_produkt", id_produkt);
     query->exec();
     conn.dbClose();

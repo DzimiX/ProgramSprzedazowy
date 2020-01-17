@@ -1,11 +1,39 @@
 #include "salesappenditem.h"
 #include "ui_salesappenditem.h"
 
+int salesAppendItem::invoiceId = -1;
+int salesAppendItem::customerId = -1;
+
 salesAppendItem::salesAppendItem(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::salesAppendItem)
 {
     ui->setupUi(this);
+    ui->output_invoiceId->setNum(invoiceId);
+    fillComboBox();
+
+    sql conn;
+    conn.dbOpen(conn.location);
+    QSqlQuery *query = new QSqlQuery(conn.db);
+
+    query->prepare("SELECT kontrahenci.id FROM "
+                   "kontrahenci, faktury "
+                   "WHERE "
+                   "faktury.id_kontrahent=kontrahenci.id "
+                   "AND "
+                   "faktury.id=:id_faktura");
+    query->bindValue(":id_faktura", invoiceId);
+    query->exec();
+    query->seek(-1);
+    query->next();
+    customerId = query->value(0).toInt();
+
+    if(customerId==1){
+        ui->label_7->hide();
+        ui->label_8->hide();
+        ui->output_unit->hide();
+        ui->output_price->hide();
+    }
 }
 
 salesAppendItem::~salesAppendItem()
@@ -13,38 +41,39 @@ salesAppendItem::~salesAppendItem()
     delete ui;
 }
 
-void salesAppendItem::appendTo(int invoiceId){
-    ui->output_invoiceId->setNum(invoiceId);
-    fillComboBox();
-}
-
 void salesAppendItem::fillComboBox(){
     sql conn;
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("select * from produkty");
+    query->prepare("SELECT * FROM produkty");
     query->exec();
     query->seek(-1);
     while(query->next()){
         ui->comboBox->addItem(query->value(1).toString());
     }
     conn.dbClose();
-    refreshStaticText();
+    updateDetails();
 }
 
-void salesAppendItem::refreshStaticText(){
+void salesAppendItem::updateDetails(){
     sql conn;
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
-    query->prepare("select id, jednostka, cena, vat from produkty where nazwa=:nazwa");
+    query->prepare("SELECT "
+                   "id, "
+                   "jednostka, "
+                   "cena, "
+                   "vat "
+                   "FROM "
+                   "produkty "
+                   "WHERE nazwa=:nazwa");
     query->bindValue(":nazwa",ui->comboBox->currentText());
     query->exec();
     query->seek(0);
     int id = query->value(0).toInt();
     ui->output_unit->setText(query->value(2).toString());
     ui->output_price->setText(query->value(3).toString());
-    qDebug() << "id produktu:: " << id;
     int ilosc = productAmount(id);
     QString ilosc_text = QString::number(ilosc);
     ui->output_available->setText(ilosc_text);
@@ -53,7 +82,7 @@ void salesAppendItem::refreshStaticText(){
 
 void salesAppendItem::on_comboBox_activated()
 {
-    refreshStaticText();
+    updateDetails();
 }
 
 void salesAppendItem::on_button_return_clicked()
@@ -66,25 +95,15 @@ void salesAppendItem::on_button_add_clicked()
     sql conn;
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
-    query->prepare("select * from produkty where nazwa=:nazwa");
+    query->prepare("SELECT * FROM produkty WHERE nazwa=:nazwa");
     query->bindValue(":nazwa",ui->comboBox->currentText());
     query->exec();
     query->seek(-1);
     query->next();
 
-    int invoiceId = ui->output_invoiceId->text().toInt();
     int productId = query->value(0).toInt();
     int amount = ui->input_amount->text().toInt();
     int amount_max = ui->output_available->text().toInt();
-
-    //pobranie id do rozliczenia - czy dostawa? wtedy warunki nie obowiązują!
-    query->prepare("SELECT kontrahenci.id FROM kontrahenci, faktury WHERE faktury.id_kontrahent=kontrahenci.id AND faktury.id=:id_faktura");
-    query->bindValue(":id_faktura", invoiceId);
-    query->exec();
-    query->seek(-1);
-    query->next();
-    int customerId = query->value(0).toInt();
-    qDebug() << customerId;
 
     if(amount <= 0 && customerId != 1 ){ //gdy customerId = 1 to dostawa i nie ma znaczeina ile mamy produktu!
         QMessageBox::critical(this,
@@ -97,7 +116,10 @@ void salesAppendItem::on_button_add_clicked()
                              "Nie posiadasz takiej ilości towaru w magazynie!",
                              QMessageBox::Ok);
     }else {
-        query->prepare("insert into rozliczenia (id_produkt,id_faktura,ilosc) values (:id_produkt,:id_faktura,:ilosc);");
+        query->prepare("INSERT INTO rozliczenia "
+                       "(id_produkt,id_faktura,ilosc) "
+                       "VALUES "
+                       "(:id_produkt,:id_faktura,:ilosc);");
         query->bindValue(":id_produkt", productId);
         query->bindValue(":id_faktura", invoiceId);
         query->bindValue(":ilosc", amount);
@@ -112,11 +134,31 @@ int salesAppendItem::productAmount(int id){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("SELECT id_produkt as ID, Nazwa, sum(ilosc) from "
+    query->prepare("SELECT id_produkt as ID, Nazwa, sum(ilosc) FROM "
                    "("
-                   "SELECT rozliczenia.id_produkt, produkty.nazwa as Nazwa, sum(rozliczenia.ilosc) as ilosc from produkty,rozliczenia,faktury where rozliczenia.id_produkt=produkty.id and rozliczenia.id_faktura=faktury.id and faktury.id_kontrahent==1 group by rozliczenia.id_produkt "
-                   "UNION ALL "
-                   "SELECT rozliczenia.id_produkt, produkty.nazwa as Nazwa, sum(-1*rozliczenia.ilosc) as ilosc from produkty,rozliczenia,faktury where rozliczenia.id_produkt=produkty.id and rozliczenia.id_faktura=faktury.id and faktury.id_kontrahent!=1 group by rozliczenia.id_produkt "
+                       "SELECT "
+                           "rozliczenia.id_produkt, "
+                           "produkty.nazwa AS Nazwa, "
+                           "sum(rozliczenia.ilosc) as ilosc "
+                       "FROM produkty,rozliczenia,faktury "
+                       "WHERE "
+                           "rozliczenia.id_produkt=produkty.id "
+                           "AND rozliczenia.id_faktura=faktury.id "
+                           "AND faktury.id_kontrahent==1 "
+                       "GROUP BY rozliczenia.id_produkt "
+
+                       "UNION ALL "
+
+                       "SELECT "
+                           "rozliczenia.id_produkt, "
+                           "produkty.nazwa AS Nazwa, "
+                           "sum(-1*rozliczenia.ilosc) AS ilosc "
+                       "FROM produkty,rozliczenia,faktury "
+                       "WHERE "
+                           "rozliczenia.id_produkt=produkty.id "
+                           "AND rozliczenia.id_faktura=faktury.id "
+                           "AND faktury.id_kontrahent!=1 "
+                       "GROUP BY rozliczenia.id_produkt "
                    ") "
                    "WHERE ID=:id "
                    "GROUP BY id_produkt");

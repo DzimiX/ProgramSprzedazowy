@@ -2,6 +2,7 @@
 #define ADDCLIENTS_H
 
 #include <QDialog>
+
 #include "sql.h"
 
 namespace Ui {

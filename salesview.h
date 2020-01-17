@@ -1,7 +1,6 @@
 #ifndef SALESVIEW_H
 #define SALESVIEW_H
 
-#include <QDialog>
 #include "sql.h"
 #include "salesdetail.h"
 
@@ -22,7 +21,7 @@ public:
 private slots:
     void on_button_return_clicked();
 
-    void on_tableView_clicked(const QModelIndex &index);
+    void on_tableView_clicked();
 
     void on_button_details_clicked();
 

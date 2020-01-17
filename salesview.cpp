@@ -26,7 +26,16 @@ void salesView::updateDisplay(){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("select faktury.id as ID,kontrahenci.nazwa as Kontrahent,faktury.data as Data,faktury.komentarz as Komentarz from faktury,kontrahenci where faktury.id_kontrahent=kontrahenci.id order by faktury.data desc;");
+    query->prepare("SELECT "
+                       "faktury.id AS ID, "
+                       "kontrahenci.nazwa AS Kontrahent, "
+                       "faktury.data AS Data, "
+                       "faktury.komentarz AS Komentarz "
+                   "FROM faktury,kontrahenci "
+                   "WHERE "
+                   "faktury.id_kontrahent=kontrahenci.id "
+                   "AND kontrahenci.id!=1 "
+                   "ORDER BY faktury.data DESC;");
     query->exec();
     QSqlQueryModel *modal = new QSqlQueryModel;
     modal->setQuery(*query);
@@ -42,7 +51,10 @@ void salesView::updateComboBox(){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("select faktury.id from faktury,kontrahenci where faktury.id_kontrahent=kontrahenci.id order by faktury.id;");
+    query->prepare("SELECT faktury.id "
+                   "FROM faktury,kontrahenci "
+                   "WHERE faktury.id_kontrahent=kontrahenci.id "
+                   "ORDER BY faktury.id;");
     query->exec();
     query->seek(-1);
     ui->comboBox->clear();
@@ -52,7 +64,7 @@ void salesView::updateComboBox(){
     }
 }
 
-void salesView::on_tableView_clicked(const QModelIndex &index)
+void salesView::on_tableView_clicked()
 {
     QItemSelectionModel *select = ui->tableView->selectionModel();
     QString value = select->selectedRows(0).value(0).data().toString();
@@ -66,9 +78,13 @@ void salesView::on_tableView_clicked(const QModelIndex &index)
 
 void salesView::on_button_details_clicked()
 {
-    salesDetail salesDetail;
-    salesDetail.updateDetails(ui->comboBox->currentText().toInt());
-    salesDetail.setModal(true);
-    salesDetail.exec();
-    updateDisplay();
+    if(ui->comboBox->currentText().toInt() != 0){
+        salesDetail::invoiceId = ui->comboBox->currentText().toInt();
+        salesDetail salesDetail;
+        salesDetail.setModal(true);
+        salesDetail.exec();
+        updateDisplay();
+    }else{
+        //
+    }
 }

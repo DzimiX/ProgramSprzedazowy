@@ -109,7 +109,7 @@
   </widget>
   <widget class="QPushButton" name="button_print">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
@@ -120,7 +120,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Drukuj</string>
+    <string>Generuj PDF</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">

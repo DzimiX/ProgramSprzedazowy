@@ -1,12 +1,6 @@
 #ifndef SALESCREATE_H
 #define SALESCREATE_H
 
-#include <QDialog>
-#include <QDebug>
-#include <QtSql>
-#include <QDateTime>
-#include <QObject>
-#include <QMessageBox>
 #include "sql.h"
 #include "salesappenditem.h"
 
@@ -26,6 +20,7 @@ public:
     ~salesCreate();
     void updateDetails();
     void fillCombo();
+    int static invoiceId;
 
 private slots:
     void on_button_quit_clicked();
@@ -33,6 +28,8 @@ private slots:
     void on_button_addElement_clicked();
     void on_tableView_clicked();
     void on_button_removeElement_clicked();
+
+    void on_button_print_clicked();
 
 private:
     Ui::salesCreate *ui;

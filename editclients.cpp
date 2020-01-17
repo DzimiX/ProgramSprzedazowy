@@ -20,7 +20,7 @@ void editClients::reciveClientId(int id){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("select * from kontrahenci where id=:id");
+    query->prepare("SELECT * FROM kontrahenci WHERE id=:id");
     query->bindValue(":id",id);
     query->exec();
 
@@ -60,8 +60,20 @@ void editClients::on_button_update_clicked()
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("update kontrahenci set nazwa=:nazwa,NIP=:NIP,REGON=:REGON,KRS=:KRS,PESEL=:PESEL,email=:email,telefon=:telefon,adres_miasto=:adres_miasto,adres_ulica=:adres_ulica,adres_numer=:adres_numer,adres_kodPocztowy=:adres_kodPocztowy where id=:id;");
-    //qDebug() << query;
+    query->prepare("UPDATE kontrahenci SET "
+                   "nazwa=:nazwa, "
+                   "NIP=:NIP, "
+                   "REGON=:REGON, "
+                   "KRS=:KRS, "
+                   "PESEL=:PESEL, "
+                   "email=:email, "
+                   "telefon=:telefon, "
+                   "adres_miasto=:adres_miasto, "
+                   "adres_ulica=:adres_ulica, "
+                   "adres_numer=:adres_numer, "
+                   "adres_kodPocztowy=:adres_kodPocztowy "
+                   "WHERE id=:id;");
+
     query->bindValue(":nazwa", name);
     query->bindValue(":NIP", NIP);
     query->bindValue(":REGON", REGON);

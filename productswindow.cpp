@@ -22,7 +22,7 @@ void productsWindow::updateProductList(){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("select * from produkty");
+    query->prepare("SELECT * FROM produkty");
     query->exec();
     modal->setQuery(*query);
     ui->tableView->setModel(modal);
@@ -32,7 +32,6 @@ void productsWindow::updateProductList(){
 
     query->seek(-1); //ustawienie indeksu przed pierwszy element
     while(query->next()){ //przeskok na 1 element (za 1 razem)
-        //qDebug() << query->value(0).toInt();
         ui->combo_select->addItem(query->value(0).toString());
     }
 
@@ -45,9 +44,6 @@ void productsWindow::on_button_editSelected_clicked()
         qDebug() << "Nie wybrano rekordu!";
     }else{
         int id = ui->combo_select->currentText().toInt();
-        //qDebug() << id;
-
-        //updateProductList();
 
         editProducts editProducts;
         editProducts.setModal(true);
@@ -63,13 +59,15 @@ void productsWindow::on_button_removeSelected_clicked()
         qDebug() << "Nie wybrano rekordu!";
     }else{
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Usuwanie rekordu", "Czy napewno chcesz usunąć ten rekord?", QMessageBox::Yes|QMessageBox::No);
+        reply = QMessageBox::question(this, "Usuwanie rekordu",
+                                      "Czy napewno chcesz usunąć ten rekord?",
+                                      QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes) {
             int id = ui->combo_select->currentText().toInt();
             sql conn;
             conn.dbOpen(conn.location);
             QSqlQuery *query = new QSqlQuery(conn.db);
-            query->prepare("delete from produkty where id=:id");
+            query->prepare("DELETE FROM produkty WHERE id=:id");
             query->bindValue(":id",id);
             query->exec();
             conn.dbClose();

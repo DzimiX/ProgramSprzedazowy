@@ -1,8 +1,8 @@
 #ifndef SALESAPPENDITEM_H
 #define SALESAPPENDITEM_H
 
-#include <QDialog>
 #include <QMessageBox>
+
 #include "sql.h"
 
 namespace Ui {
@@ -13,16 +13,14 @@ class salesAppendItem : public QDialog
 {
     Q_OBJECT
 
-public slots:
-    void appendTo(int invoiceId);
-
 public:
     explicit salesAppendItem(QWidget *parent = nullptr);
     ~salesAppendItem();
-
+    static int invoiceId;
+    static int customerId;
 public:
     void fillComboBox();
-    void refreshStaticText();
+    void updateDetails();
     int productAmount(int id);
 
 private slots:

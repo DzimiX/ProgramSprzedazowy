@@ -2,6 +2,7 @@
 #define ADDPRODUCTS_H
 
 #include <QDialog>
+
 #include "sql.h"
 
 namespace Ui {
