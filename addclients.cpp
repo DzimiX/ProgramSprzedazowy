@@ -31,7 +31,10 @@ void addClients::on_button_add_clicked()
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("insert into kontrahenci (nazwa, NIP, REGON, KRS, PESEL, email, telefon, adres_miasto, adres_ulica, adres_numer, adres_kodPocztowy) values (:nazwa, :NIP, :REGON, :KRS, :PESEL, :email, :telefon, :adres_miasto, :adres_ulica, :adres_numer, :adres_kodPocztowy)");
+    query->prepare("INSERT INTO kontrahenci "
+                   "(nazwa, NIP, REGON, KRS, PESEL, email, telefon, adres_miasto, adres_ulica, adres_numer, adres_kodPocztowy) "
+                   "VALUES "
+                   "(:nazwa, :NIP, :REGON, :KRS, :PESEL, :email, :telefon, :adres_miasto, :adres_ulica, :adres_numer, :adres_kodPocztowy)");
     query->bindValue(":nazwa", name);
     query->bindValue(":NIP", NIP);
     query->bindValue(":REGON", REGON);

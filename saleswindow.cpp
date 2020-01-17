@@ -25,7 +25,7 @@ void salesWindow::fillComboBox()
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("select * from kontrahenci where id>2"); //nie interesuje nas PARAGON ani DOSTAWA
+    query->prepare("SELECT * FROM kontrahenci WHERE id>2"); //nie interesuje nas PARAGON ani DOSTAWA
     query->exec();
 
     ui->comboBox->clear();
@@ -49,7 +49,7 @@ void salesWindow::on_button_contiune_clicked()
         salesCreate.exec();
         salesWindow::close();
     }else{
-        qDebug() << "Niepoprawny wybór!";
+        //qDebug() << "Niepoprawny wybór!";
     }
 }
 

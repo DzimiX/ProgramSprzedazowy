@@ -24,11 +24,31 @@ void storageWindow::updateDetails(){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("SELECT id_produkt as ID, Nazwa, sum(ilosc) as 'Suma produktów' from "
+    query->prepare("SELECT id_produkt AS ID, Nazwa, sum(ilosc) AS 'Suma produktów' FROM "
                    "("
-                   "SELECT rozliczenia.id_produkt, produkty.nazwa as Nazwa, sum(rozliczenia.ilosc) as ilosc from produkty,rozliczenia,faktury where rozliczenia.id_produkt=produkty.id and rozliczenia.id_faktura=faktury.id and faktury.id_kontrahent==1 group by rozliczenia.id_produkt "
-                   "UNION ALL "
-                   "SELECT rozliczenia.id_produkt, produkty.nazwa as Nazwa, sum(-1*rozliczenia.ilosc) as ilosc from produkty,rozliczenia,faktury where rozliczenia.id_produkt=produkty.id and rozliczenia.id_faktura=faktury.id and faktury.id_kontrahent!=1 group by rozliczenia.id_produkt "
+                       "SELECT "
+                           "rozliczenia.id_produkt, "
+                           "produkty.nazwa AS Nazwa, "
+                           "sum(rozliczenia.ilosc) AS ilosc "
+                       "FROM produkty,rozliczenia,faktury "
+                       "WHERE "
+                           "rozliczenia.id_produkt=produkty.id "
+                           "AND rozliczenia.id_faktura=faktury.id "
+                           "AND faktury.id_kontrahent==1 "
+                       "GROUP BY rozliczenia.id_produkt "
+
+                       "UNION ALL "
+
+                       "SELECT "
+                           "rozliczenia.id_produkt, "
+                           "produkty.nazwa AS Nazwa, "
+                           "sum(-1*rozliczenia.ilosc) AS ilosc "
+                       "FROM produkty,rozliczenia,faktury "
+                       "WHERE "
+                           "rozliczenia.id_produkt=produkty.id "
+                           "AND rozliczenia.id_faktura=faktury.id "
+                           "AND faktury.id_kontrahent!=1 "
+                       "GROUP BY rozliczenia.id_produkt "
                    ") "
                    "GROUP BY id_produkt");
     query->exec();

@@ -22,7 +22,7 @@ void clientsWindow::updateClientsList(){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("select * from kontrahenci");
+    query->prepare("SELECT * FROM kontrahenci");
     query->exec();
     modal->setQuery(*query);
     ui->tableView->setModel(modal);
@@ -32,7 +32,6 @@ void clientsWindow::updateClientsList(){
 
     query->seek(-1); //ustawienie indeksu przed pierwszy element
     while(query->next()){ //przeskok na 1 element (za 1 razem)
-        //qDebug() << query->value(0).toInt();
         ui->combo_select->addItem(query->value(0).toString());
     }
 
@@ -53,9 +52,6 @@ void clientsWindow::on_button_editSelected_clicked()
         qDebug() << "Wybrano niepoprawny rekord!";
     }else{
         int id = ui->combo_select->currentText().toInt();
-        //qDebug() << id;
-
-        //updateProductList();
 
         editClients editClients;
         editClients.setModal(true);
@@ -77,7 +73,7 @@ void clientsWindow::on_button_removeSelected_clicked()
             sql conn;
             conn.dbOpen(conn.location);
             QSqlQuery *query = new QSqlQuery(conn.db);
-            query->prepare("delete from kontrahenci where id=:id");
+            query->prepare("DELETE FROM kontrahenci WHERE id=:id");
             query->bindValue(":id",id);
             query->exec();
             conn.dbClose();

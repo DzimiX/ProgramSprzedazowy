@@ -20,7 +20,13 @@ void salesDetail::updateDetails(int invoiceId){
     sql conn;
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
-    query->prepare("select kontrahenci.nazwa,faktury.data from faktury,kontrahenci where faktury.id=:id and faktury.id_kontrahent=kontrahenci.id");
+    query->prepare("SELECT "
+                       "kontrahenci.nazwa, "
+                       "faktury.data "
+                   "FROM faktury,kontrahenci "
+                   "WHERE "
+                       "faktury.id=:id "
+                       "AND faktury.id_kontrahent=kontrahenci.id");
     query->bindValue(":id",invoiceId);
     query->exec();
     query->seek(-1);
@@ -28,7 +34,19 @@ void salesDetail::updateDetails(int invoiceId){
     ui->output_clientName->setText(query->value(0).toString());
     ui->output_date->setText(query->value(1).toString());
 
-    query->prepare("select rozliczenia.id, produkty.nazwa as Nazwa,produkty.cena as Cena, produkty.VAT as VAT,rozliczenia.ilosc as Ilość, (produkty.cena * rozliczenia.ilosc) as Netto, (produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc) as 'Suma VAT', (produkty.cena * rozliczenia.ilosc + produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc) as Brutto from rozliczenia,produkty where rozliczenia.id_faktura=:id_faktura and rozliczenia.id_produkt=produkty.id");
+    query->prepare("SELECT "
+                       "rozliczenia.id, "
+                       "produkty.nazwa AS Nazwa, "
+                       "produkty.cena AS Cena, "
+                       "produkty.VAT AS VAT, "
+                       "rozliczenia.ilosc AS Ilość, "
+                       "(produkty.cena * rozliczenia.ilosc) AS Netto, "
+                       "(produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc) AS 'Suma VAT', "
+                       "(produkty.cena * rozliczenia.ilosc + produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc) AS Brutto "
+                   "FROM rozliczenia,produkty "
+                   "WHERE "
+                       "rozliczenia.id_faktura=:id_faktura "
+                       "AND rozliczenia.id_produkt=produkty.id");
     query->bindValue(":id_faktura",invoiceId);
     query->exec();
     QSqlQueryModel *modal = new QSqlQueryModel;
@@ -59,16 +77,18 @@ void salesDetail::on_button_return_clicked()
 void salesDetail::on_button_cancel_clicked()
 {
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Anulowanie zamówienia", "Czy napewno chcesz anulować zamówienie? (tej operacji nie można cofnąć)", QMessageBox::Yes|QMessageBox::No);
+    reply = QMessageBox::question(this, "Anulowanie zamówienia",
+                                  "Czy napewno chcesz anulować zamówienie? (tej operacji nie można cofnąć)",
+                                  QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         sql conn;
         conn.dbOpen(conn.location);
         QSqlQuery *query = new QSqlQuery(conn.db);
         int id = ui->output_invoiceId->text().toInt();
-        query->prepare("delete from rozliczenia where id_faktura=:id_faktura");
+        query->prepare("DELETE FROM rozliczenia WHERE id_faktura=:id_faktura");
         query->bindValue(":id_faktura",id);
         query->exec();
-        query->prepare("delete from faktury where id=:id");
+        query->prepare("DELETE FROM faktury WHERE id=:id");
         query->bindValue(":id",id);
         query->exec();
         conn.dbClose();

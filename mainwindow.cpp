@@ -57,7 +57,7 @@ void mainWindow::updateStaticText(){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("select * from firma");
+    query->prepare("SELECT * FROM firma");
     query->exec();
 
     query->seek(-1);

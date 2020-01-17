@@ -24,9 +24,14 @@ void suppliesWindow::updateDetails(){
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare(
-                   "SELECT faktury.id AS ID, kontrahenci.nazwa AS NAZWA, faktury.data AS DATA, faktury.komentarz AS KOMENTARZ "
+                   "SELECT faktury.id AS ID, "
+                       "kontrahenci.nazwa AS NAZWA, "
+                       "faktury.data AS DATA, "
+                       "faktury.komentarz AS KOMENTARZ "
                    "FROM faktury,kontrahenci "
-                   "WHERE faktury.id_kontrahent=kontrahenci.id AND kontrahenci.id=1 " //id=1 id dostawy
+                   "WHERE "
+                       "faktury.id_kontrahent=kontrahenci.id "
+                       "AND kontrahenci.id=1 " //id=1 id dostawy
                    "ORDER BY faktury.data DESC"
                    );
     query->exec();
@@ -44,9 +49,15 @@ void suppliesWindow::updateComboBox(){
     QSqlQuery *query = new QSqlQuery(conn.db);
 
     query->prepare(
-                   "SELECT faktury.id AS ID, kontrahenci.nazwa AS NAZWA, faktury.data AS DATA, faktury.komentarz AS KOMENTARZ "
+                   "SELECT "
+                       "faktury.id AS ID, "
+                       "kontrahenci.nazwa AS NAZWA, "
+                       "faktury.data AS DATA, "
+                       "faktury.komentarz AS KOMENTARZ "
                    "FROM faktury,kontrahenci "
-                   "WHERE faktury.id_kontrahent=kontrahenci.id AND kontrahenci.id=1 " //id=1 id dostawy
+                   "WHERE "
+                       "faktury.id_kontrahent=kontrahenci.id "
+                       "AND kontrahenci.id=1 " //id=1 id dostawy
                    "ORDER BY faktury.data DESC"
                    );
     query->exec();

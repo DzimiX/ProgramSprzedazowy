@@ -18,10 +18,10 @@ bool sql::dbExists(QString location){
     if(QFileInfo::exists(location)){
         return true;
     }else{
-        QDir dir(qApp->applicationDirPath()+"/db");
-        if (!dir.exists()){
-          dir.mkdir(".");
-        }
+        QDir dir(qApp->applicationDirPath()+"/db"); //
+        if (!dir.exists()){ //creates directory to make db creation possible
+          dir.mkdir(".");   //
+        }                   //
         return false;
     }
 }
@@ -153,15 +153,17 @@ void sql::dbCreatePdf(int invoiceId){
     QString sprzedawca_email = query->value(5).toString();
 
     query->prepare("SELECT kontrahenci.nazwa,"
-                   "kontrahenci.adres_miasto,"
-                   "kontrahenci.adres_ulica,"
-                   "kontrahenci.adres_numer,"
-                   "kontrahenci.adres_kodPocztowy,"
-                   "kontrahenci.telefon,"
-                   "kontrahenci.email,"
-                   "faktury.data "
+                       "kontrahenci.adres_miasto,"
+                       "kontrahenci.adres_ulica,"
+                       "kontrahenci.adres_numer,"
+                       "kontrahenci.adres_kodPocztowy,"
+                       "kontrahenci.telefon,"
+                       "kontrahenci.email,"
+                       "faktury.data "
                    "FROM kontrahenci,faktury "
-                   "WHERE kontrahenci.id=faktury.id_kontrahent AND faktury.id=:ID;");
+                   "WHERE "
+                       "kontrahenci.id=faktury.id_kontrahent "
+                       "AND faktury.id=:ID;");
     query->bindValue(":ID", invoiceId);
     query->exec();
     query->seek(0);
@@ -188,13 +190,16 @@ void sql::dbCreatePdf(int invoiceId){
     QString suma_brutto = query->value(2).toString();
 
     query->prepare("SELECT ROW_NUMBER () OVER ( ORDER BY rozliczenia.id ) RowNum, "
-                   "produkty.nazwa AS Nazwa,round(produkty.cena,2), "
-                   "round(produkty.VAT,2), "
-                   "rozliczenia.ilosc, "
-                   "round((produkty.cena * rozliczenia.ilosc),2), "
-                   "round((produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc),2), "
-                   "round((produkty.cena * rozliczenia.ilosc + produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc),2) "
-                   "FROM rozliczenia,produkty WHERE rozliczenia.id_faktura=:ID AND rozliczenia.id_produkt=produkty.id");
+                       "produkty.nazwa AS Nazwa,round(produkty.cena,2), "
+                       "round(produkty.VAT,2), "
+                       "rozliczenia.ilosc, "
+                       "round((produkty.cena * rozliczenia.ilosc),2), "
+                       "round((produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc),2), "
+                       "round((produkty.cena * rozliczenia.ilosc + produkty.cena * produkty.VAT * 0.01 * rozliczenia.ilosc),2) "
+                   "FROM rozliczenia,produkty "
+                   "WHERE "
+                       "rozliczenia.id_faktura=:ID "
+                       "AND rozliczenia.id_produkt=produkty.id");
     query->bindValue(":ID", invoiceId);
     query->exec();
     query->seek(-1);
@@ -323,7 +328,8 @@ void sql::dbCreatePdf(int invoiceId){
             text.append("<br>");
             text.append("SUMA BRUTTO: <b>");
             text.append(suma_brutto);
-            text.append("</b><br><br><br><table width='100%'><tr><td>________________________<br>(sprzedawca)</td><td class='right'>________________________<br>(odbiorca)</td></td></table>");
+            text.append("</b><br><br><br><table width='100%'><tr><td>________________________<br>(sprzedawca)</td>");
+            text.append("<td class='right'>________________________<br>(odbiorca)</td></td></table>");
         text.append("</body>");
     text.append("</html>");
 
