@@ -82,7 +82,7 @@ void mainWindow::updateStaticText(){
             qApp->setStyleSheet(ts.readAll());
         }
     }else{
-        qApp->setStyleSheet(nullptr);
+        qApp->setStyleSheet(nullptr); //NULL for stylesheet do bring back default stylesheet
     }
 
     conn.dbClose();
@@ -108,7 +108,7 @@ void mainWindow::on_comboBox_activated()
         sql conn;
         conn.dbOpen(conn.location);
         QSqlQuery *query = new QSqlQuery(conn.db);
-        query->prepare("UPDATE firma SET motyw=:motyw WHERE 1=1; ");
+        query->prepare("UPDATE firma SET motyw=:motyw; ");
         query->bindValue(":motyw", ui->comboBox->currentText());
         query->exec();
         conn.dbClose();

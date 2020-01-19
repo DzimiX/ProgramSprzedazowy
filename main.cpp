@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QTranslator qtTranslator;
+    QTranslator qtTranslator; //qtTransalator for Yes / No transalation in dialog boxes
     if (qtTranslator.load(QLocale::system(),
                 "qt", "_",
                 QLibraryInfo::location(QLibraryInfo::TranslationsPath)))

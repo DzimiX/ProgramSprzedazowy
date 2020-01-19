@@ -22,7 +22,19 @@ void clientsWindow::updateClientsList(){
     conn.dbOpen(conn.location);
     QSqlQuery *query = new QSqlQuery(conn.db);
 
-    query->prepare("SELECT * FROM kontrahenci");
+    query->prepare("SELECT "
+                   "kontrahenci.id AS ID, "
+                   "kontrahenci.nazwa AS Nazwa, "
+                   "kontrahenci.REGON AS REGON, "
+                   "kontrahenci.KRS AS KRS, "
+                   "kontrahenci.PESEL AS PESEL, "
+                   "kontrahenci.email AS Email, "
+                   "kontrahenci.telefon AS Telefon, "
+                   "kontrahenci.adres_miasto AS Miasto, "
+                   "kontrahenci.adres_ulica AS Ulica, "
+                   "kontrahenci.adres_numer AS Numer, "
+                   "kontrahenci.adres_kodPocztowy AS 'Kod Pocztowy' "
+                   "FROM kontrahenci");
     query->exec();
     modal->setQuery(*query);
     ui->tableView->setModel(modal);
@@ -30,8 +42,8 @@ void clientsWindow::updateClientsList(){
     ui->combo_select->clear();
     ui->combo_select->addItem("ID");
 
-    query->seek(-1); //ustawienie indeksu przed pierwszy element
-    while(query->next()){ //przeskok na 1 element (za 1 razem)
+    query->seek(-1); //set to -1 record from querry
+    while(query->next()){ //jump through every query record and add it to comboselect
         ui->combo_select->addItem(query->value(0).toString());
     }
 
@@ -49,7 +61,7 @@ void clientsWindow::on_button_newClient_clicked()
 void clientsWindow::on_button_editSelected_clicked()
 {
     if(ui->combo_select->currentText()=="ID" || ui->combo_select->currentText()=="1" || ui->combo_select->currentText()=="2"){
-        qDebug() << "Wybrano niepoprawny rekord!";
+//        qDebug() << "Wybrano niepoprawny rekord!";
     }else{
         int id = ui->combo_select->currentText().toInt();
 
@@ -64,7 +76,7 @@ void clientsWindow::on_button_editSelected_clicked()
 void clientsWindow::on_button_removeSelected_clicked()
 {
     if(ui->combo_select->currentText()=="ID" || ui->combo_select->currentText()=="1" || ui->combo_select->currentText()=="2"){
-        qDebug() << "Wybrano niepoprawny rekord!";
+//        qDebug() << "Wybrano niepoprawny rekord!";
     }else{
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Usuwanie rekordu", "Czy napewno chcesz usunąć ten rekord?", QMessageBox::Yes|QMessageBox::No);
@@ -81,6 +93,8 @@ void clientsWindow::on_button_removeSelected_clicked()
         } else {
             updateClientsList();
         }
+
+
     }
 }
 

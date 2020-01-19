@@ -66,8 +66,7 @@ void companyWindow::on_pushButton_2_clicked()
                        "adres_miasto=:adres_miasto, "
                        "adres_ulica=:adres_ulica, "
                        "adres_numer=:adres_numer, "
-                       "adres_kodPocztowy=:adres_kodPocztowy "
-                   "WHERE 1=1;"); //only one row in table
+                       "adres_kodPocztowy=:adres_kodPocztowy;");
     query->bindValue(":nazwa", name);
     query->bindValue(":NIP", NIP);
     query->bindValue(":REGON", REGON);
